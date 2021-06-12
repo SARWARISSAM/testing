@@ -1,0 +1,3617 @@
+/*   
+  Template Name: COW
+  Version: 0.1
+  Author: NAGARRO
+  */
+@import url("font-awesome.css");
+
+@font-face {
+    font-family: 'OpenSans_regular';
+    src: url('fonts/OpenSans-Regular.woff2') format('woff2'),
+    url('fonts/OpenSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans_Semibold';
+    src: url('fonts/OpenSans-Semibold.ttf') format('ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans_Bold';
+    src: url('fonts/OpenSans-Bold.ttf') format('ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: normal;
+    color: #757575;
+    font-size: 14px !important;
+    overflow: hidden !important;
+}
+
+input {
+    text-align: left !important;
+}
+
+.main-container {
+    margin-left: 7px !important;
+    overflow: hidden !important;
+}
+
+.loadingDataMessage, .offlineMessage, .emptyMessage {
+    font-family: 'OpenSans_regular' !important;
+}
+
+/* Hack for IE(when dynamic grid has no rows) */
+table tr td.emptyMessage {
+    padding: 0px !important;
+}
+
+/* helping class ----------------*/
+.mgT0{
+margin-top: 0px !important;
+}
+.mgR10 {
+    margin-right: 10px !important;
+}
+
+/*Page Sections*/
+/*===================================Header Section CSS ================================*/
+.assaHeader {
+    position: fixed !important;
+    width: 100% !important;
+    box-shadow: 0px 2px 5px #bcbcbc !important;
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 52%, #dedfe0 99%);
+    height: auto !important;
+    font-family: 'OpenSans_regular' !important;
+    border-bottom: 1px solid #fafafa;
+    z-index: 999999999 !important;
+}
+
+.assaHeader div[eventproxy *="IMenuButton"] .header-links {
+    border-right: 1px solid #a7a9ac !important;
+}
+
+.toggle-header-section {
+    top: 0 !important;
+    height: 1px !important;
+}
+
+.collapse-header-btn {
+    top: 0px !important;
+}
+
+.collapse-header-btn .fa.fa-chevron-up, .collapse-header-btn .fa.fa-chevron-down {
+    width: 25px;
+    height: 25px;
+    line-height: 23px;
+    border-radius: 0 0 5px 5px;
+    color: #757575;
+}
+
+.logo-container {
+    left: 0px !important;
+    top: 15px !important;
+}
+
+.logo-container .logo {
+    font-size: 20px;
+    font-family: 'OpenSans_regular' !important;
+    text-shadow: 0px 1px 1px #333;
+}
+
+.logo .assa-content, .logo .cow-content {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+.logo .assa-content {
+    color: #000;
+    border-right: 1px solid #000;
+}
+
+.logo .cow-content {
+    color: #45b3d8;
+}
+
+.user-name {
+    margin-right: 10px !important;
+    font-weight:bold!important;
+    color: #282828 !important;
+    font-size: 12.58px !important;
+    font-family: RobotoLight !important;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.user-name-new{
+	    text-align: right;
+    color: #282828 !important;
+    font-size: 14.5px !important;
+    /* 	font-weight: bold; */
+    /* font-family: 'OpenSans_regular' !important; */
+    margin-right: 5px !important;
+    margin-left: 2px !important;
+    margin-top: 0px !important;
+    padding-top: 2px !important;
+    font-family: 'OpenSans_Semibold' !important;
+
+}
+.user-name p {
+    text-align: right;
+    color: #282828 !important;
+    font-size: 14.5px !important;
+    font-weight: bold;
+    font-family: 'OpenSans_regular' !important;
+    margin-right: 5px !important;
+    margin-left: 2px !important;
+    margin-top: 0px !important;
+    padding-top: 2px !important;
+}
+
+.fa-tags:before, .fa-user:before {
+    color: #00a0d0 !important;
+
+}
+
+.switchButton {
+    margin-right: 10px !important;
+    font-weight:bold !important;
+    color: #282828 !important;
+    text-overflow:ellipsis;
+}
+
+
+.userWelcomeHtmlIconStyle {
+    margin-left: 10px !important;
+    padding-top: 2px !important;
+}
+
+.header-links-section {
+    margin-right: 10px !important;
+}
+
+.header-links-section .header-links {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+    float: right;
+    text-align: center;
+    font-family: 'OpenSans_regular' !important;
+}
+
+/*.profile_dropDown td.button, .profile_dropDown td.buttonOver, .profile_dropDown td.buttonFocused, .profile_dropDown td.buttonFocusedDown, .profile_dropDown td.buttonFocusedOver {
+
+}*/
+.profile_dropDown td[class *="button"] {
+    background: transparent !important;
+    border: 0px;
+}
+
+.profile_dropDown .fa {
+    position: absolute;
+    color: #666;
+    top: 3px;
+    left: 0px;
+    font-size: 18px;
+    /* padding-top:3px !important; */
+    padding-left: 6px !important;
+}
+
+.drop_down_menu {
+    left: auto !important;
+    right: 12px;
+    top: 48px !important;
+    border: 1px solid #999 !important;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17647058823529413) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
+    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
+}
+
+/*.drop_down_menu .menuItemStyle .button, .drop_down_menu .menuItemStyle .buttonOver, .drop_down_menu .menuItemStyle .buttonFocused, .drop_down_menu .menuItemStyle .buttonFocusedDown, .drop_down_menu .menuItemStyle .buttonFocusedOver{
+	background-color: transparent;
+    border: 0px;
+    font-size:14px;
+    text-align:left !important;
+    color: #262626;
+    font-family: OpenSans-Regular;
+}
+*/
+.drop_down_menu .menuItemStyle [class *="button"] {
+    background-color: transparent;
+    border: 0px;
+    font-size: 13px;
+    text-align: left !important;
+    color: black;
+    font-family: OpenSans_Regular;
+}
+
+.drop_down_menu .menuItemStyle {
+	border-color:transparent !important;
+	background-color:#fff !important;
+	border-bottom: 1px solid rgba(0, 0, 0, .15) !important;
+}
+
+.drop_down_menu .menuItemStyle:hover {
+	background-color: #f5f5f5 !important;
+}
+
+div[eventproxy="nav_view"] {
+    background: #ffffff;
+}
+
+/* .footer-container {
+    bottom: 10px !important;
+    height: 30px !important;
+} */
+.footer-cowtext {
+    text-align: right;
+}
+
+.footer-cowtext > div {
+    padding-right: 10px !important;
+    font-family: 'OpenSans_regular' !important;
+    color: black !important;
+}
+
+.Footer_Css {
+    font-size: 15px;
+    position: static !important;
+    text-align: right;
+    float: right;
+    margin-right: 20px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+/* .main-container>div>div:last-child {
+    position: fixed !important;
+    height: 30px !important;
+} */
+/* .main-container>div>div:last-child>div:first-child {
+    position: fixed !important;
+    bottom: 15px;
+    width: 100%;
+    height: 30px !important;
+} */
+.dropdown-menu {
+    margin-top: 15px !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.51) !important;
+}
+
+.dropdown-menu .menuTable tr td:hover {
+    background: #00a0d0 !important;
+}
+
+.dropdown-menu .menuTable tr td {
+    background: #00a0d0;
+    cursor: pointer;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    font-size: 12px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+/*=================================#END HEADER SECTION==================================================================*/
+.productSelectorTab .tabSetContainer {
+    border-right: 0px;
+}
+
+.label-heading {
+    color: #00a0d0;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0 0 10px 0;
+    position: relative;
+    top: 2px;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.filter-section-form table tr td label {
+    color: #00a0d0;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0 0 10px 0;
+    position: relative;
+    top: 2px;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.refresh {
+    position: static !important;
+    float: right;
+    margin: 6px;
+}
+
+.refresh-btn img {
+    width: 35px;
+    height: 35px;
+}
+
+.verticalLayoutBorder {
+    border-right: 1px solid #ddd;
+    padding-right: 13px;
+}
+
+/*======================================================================================*/
+/*DatePicker CSS*/
+.dateChooserBorder .listTable tbody tr td {
+    background: #ffffff !important;
+    text-align: center;
+}
+
+.dateChooserBorderedBottomButton, .dateChooserBorderedBottomButtonOver,
+.dateChooserBorderedBottomButtonDown,
+.dateChooserBorderedBottomButtonSelected,
+.dateChooserBorderedBottomButtonSelectedOver,
+.dateChooserBorderedBottomButtonSelectedDown,
+.dateChooserBorderedBottomButtonFocused,
+.dateChooserBorderedBottomButtonFocusedOver,
+.dateChooserBorderedBottomButtonFocusedDown {
+    padding: 10px 32px !important;
+    background: #00a0d0 !important;
+    display: inline-block;
+    font-family: 'OpenSans_regular' !important;
+    font-size: 10px !important;
+    border-radius: 5px;
+}
+.dateChooserBorderTop{
+	background: #ffffff !important;
+}
+td.dateChooserButton, td.dateChooserButtonOver, td.dateChooserButtonDown,
+td.dateChooserButtonSelected, td.dateChooserButtonSelectedOver, td.dateChooserButtonSelectedDown,
+td.dateChooserWeekendButton, td.dateChooserWeekendButtonOver, td.dateChooserWeekendButtonDown,
+td.dateChooserWeekendButtonSelected, td.dateChooserWeekendButtonSelectedOver,
+td.dateChooserWeekendButtonSelectedDown {
+    color: black !important;
+    font-size: 12px !important;
+}
+
+td.dateChooserNavButton, td.dateChooserNavButtonOver, td.dateChooserNavButtonDown,
+td.dateChooserNavButtonSelected, td.dateChooserNavButtonSelectedOver,
+td.dateChooserNavButtonSelectedDown, td.dateChooserNavButtonFocused {
+    color: #130e0e !important;
+    font-size: 10px !important;
+}
+
+/*Home Calendar CSS*/
+div[eventproxy *="monthView_body"] .listTable tbody tr td {
+    text-align: right;
+    background: inherit !important;
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+div[eventproxy *="monthView_body"] .listTable tbody tr td.calMonthDayBodySelected {
+    background: #fcf8e3 !important;
+}
+
+div[eventproxy *="monthView"].listGrid {
+    border: none !important;
+    border-top: 1px solid #dddddd !important;
+    border-left: 1px solid #dddddd !important;
+}
+
+div[eventproxy *="monthView"] .headerButton {
+    background: inherit !important;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    color: #757575 !important;
+    text-align: center !important;
+    font-weight: bold;
+    font-family: 'OpenSans_regular' !important;
+}
+
+/*===========================================================================================================*/
+/*=======================================CSS FOR COW GRIDS===================================================*/
+.pro_detail_layout .listTable tr td, .gridStyle .listTable tr td, .lockGridStyle .listTable tr td {
+    font-size: 12px !important;
+    color: black;
+    text-align: left;
+    font-family: 'OpenSans_regular' !important;
+    padding-left: 5px !important;
+}
+
+.pro_detail_layout .listTable tr:nth-child(odd) td, .gridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.lockGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.pro_detail_layout .listTable tr:nth-child(even) td, .gridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.lockGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.userCompanyDetailGridStyle .listTable tr td, .gridStyle .listTable tr td, .lockGridStyle .listTable tr td {
+    font-size: 12px !important;
+    color: black;
+    text-align: left;
+    font-family: 'OpenSans_regular' !important;
+
+}
+
+.userCompanyDetailGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.userCompanyDetailGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.userCompanyDetailGridStyle .listTable tr td[class *="cellSelected"],
+.gridStyle .listTable tr td[class *="cellSelected"], .lockGridStyle .listTable tr td[class *="cellSelected"], .lockGridStyle .listTable tr td[class *="Selected"], .lockGridStyle .listTable tr td[class *="SelectedCellAltCol"] {
+    background: #00a0d0 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.userCompanyDetailGridStyle td[class *="headerButton"] {
+    background: #4bb7d8 !important;
+    color: #fff !important;
+    border-right: 1px solid #fff;
+}
+
+.userCompanyDetailGridStyle .sorterButton {
+    background: #4bb7d8 !important;
+}
+
+.pro_detail_layout .sorterButton, .gridStyle .sorterButton, .lockGridStyle .sorterButton {
+    background: #00a0d0 !important;
+}
+
+.cowGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.cowGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.label-heading-lg {
+    font-size: 18px !important;
+    color: #00a0d0;
+    font-weight: bold;
+    margin: 0 0 0 0;
+    position: absolute;
+    border-bottom: 1px solid #9c9c9c;
+    width: 100% !important;
+    padding-bottom: 11px;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.listGrid [class *="headerButton"] {
+    background: #00a0d0 !important;
+    font-size: 13px !important;
+    color: #fff !important;
+    text-align: left !important;
+    font-family: 'OpenSans_Semibold' !important;
+    line-height: 16px !important;
+    border-right: 1px solid #fff;
+}
+
+.pro_detail_layout .listTable tr td[class *="cellSelected"],
+.gridStyle .listTable tr td[class *="cellSelected"], .gridStyle .listTable tr td[class *="Selected"], .lockGridStyle .listTable tr td[class *="cellSelected"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.gridStyle div[eventproxy*="Toolbar"], .lockGridStyle div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.gridStyle td[class *="headerButton"], .lockGridStyle td[class *="headerButton"] {
+    background: #00a0d0 !important;
+    color: #fff !important;
+    border-right: 1px solid #fff;
+}
+
+.cellSelected, .cellSelectedOver, .cellSelectedAltCol,
+.cellSelectedOverAltCol {
+    color: #757575 !important;
+}
+
+.filter-section .listTable tr td {
+    font-size: 14px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.filter-section .listTable tr td.cellSelected, .filter-section .listTable tr td.cellSelectedOver,
+.filter-section .listTable tr td.cellSelectedAltCol, .filter-section .listTable tr td.cellSelectedOverAltCol,
+.filter-section .listTable tr td.cellSelectedDark, .filter-section .listTable tr td.cellSelectedDarkOver,
+.filter-section .listTable tr td.cellSelectedDarkAltCol,
+.filter-section .listTable tr td.cellSelectedOverDarkAltCol,
+.filter-section .listTable tr td.cellSelectedOverDark {
+    background: #0091bc !important;
+    color: #fff !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.sorterButton {
+    background: #0091bc !important;
+}
+
+/*=========================================================================================================*/
+/*=====================================CSS FOR COW RIGHT CONTAINER=========================================*/
+.project-detail {
+    background: #f2f2f2;
+    background: linear-gradient(#f2f2f2, #e6e7e8);
+    background: -wbkit-linear-gradient(#f2f2f2, #e6e7e8);
+    background: -moz-linear-gradient(#f2f2f2, #e6e7e8);
+    background: -o-linear-gradient(#f2f2f2, #e6e7e8);
+    box-shadow: 0px 1px 6px #d0caca;
+    -webkit-box-shadow: 0px 1px 6px #d0caca;
+    -moz-box-shadow: 0px 1px 6px #d0caca;
+    padding: 5px !important;
+}
+
+.project-detail > div > div {
+    background: #fff;
+}
+
+.orderFormHeaderLayout {
+    /* top:325px !important; */
+    margin-left: 5px !important;
+    margin-right: 10px !important;
+}
+
+.project_detail_container {
+    box-shadow: 0px 0px 2px #d2d2d2 !important;
+    -webkit-box-shadow: 0px 0px 2px #d2d2d2 !important;
+    -moz-box-shadow: 0px 0px 2px #d2d2d2 !important;
+    border-radius: 4px !important;
+    border: 2px solid rgb(227, 228, 230) !important;
+}
+
+.orderFormHeaderLayout, .orderFormHeaderLayoutExpanded, .orderFormHeaderLayoutCollapsed {
+    box-shadow: 0px 0px 2px #d2d2d2 !important;
+    -webkit-box-shadow: 0px 0px 2px #d2d2d2 !important;
+    -moz-box-shadow: 0px 0px 2px #d2d2d2 !important;
+    border-radius: 4px !important;
+    border: 3px solid rgb(227, 228, 230) !important;
+}
+
+/* .project_detail_container{
+	margin-left:17px !important;
+	margin-top:15px !important;
+	margin-bottom:15px !important;
+}
+.tiles_section_cointainer{
+	margin-left:8px !important;
+} */
+
+.project-detail .tabButtonTopSelected, .project-detail .tabButtonTopSelectedOver,
+.project-detail .tabButtonTopSelectedFocused, .project-detail .tabButtonTopSelectedFocusedOver,
+.project-detail .tabButtonTopSelectedFocusedDown {
+    background: #00a0d0 !important;
+    color: #fff !important;
+}
+
+.page_heading {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: #00a0d0 !important;
+    font-family: 'OpenSans-Semibold';
+}
+
+.projectDistributorLayout .page_heading_Info {
+    font-size: 18px;
+    color: black !important;
+    font-family: 'Verdana';
+}
+
+.orderFormHeaderViewStyle {
+    overflow: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.tabSetContainer {
+    border: 0px !important;
+}
+
+div[eventproxy *="tabBar_baseLine"] {
+    background: #ddd !important;
+}
+
+td.tabButtonTop, td.tabButtonTopOver, td.tabButtonTopDown, td.tabButtonTopFocused,
+td.tabButtonTopFocusedOver {
+    background: #ffffff !important;
+    color: black !important;
+    border: none !important;
+    font-size: 14px !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+td.tabButtonTop:hover, td.tabButtonTopOver:hover, td.tabButtonTopDown:hover, td.tabButtonTopFocused:hover,
+td.tabButtonTopFocusedOver :hover {
+    background: #e7e7e7 !important;
+}
+
+td.tabButtonTopSelected, td.tabButtonTopSelectedOver, .td.tabButtonTopSelectedDown,
+.td.tabButtonTopSelectedFocused, .td.tabButtonTopSelectedFocusedOver,
+td.tabButtonTopDown, td.tabButtonTopSelectedFocused, td.tabButtonTopSelectedFocusedOver,
+td.tabButtonTopSelectedFocusedDown, td.tabButtonTopSelectedOver, td.tabButtonTopSelectedDown,
+td.tabButtonTopSelected, td.tabButtonTopFocusedDown, td.tabButtonTopSelectedFocusedDown,
+td.tabButtonTopDown, td.tabButtonTopSelectedDown {
+    background: #ffffff !important;
+    color: #00a0d0 !important;
+    border: 1px solid #ddd !important;
+    font-size: 15px !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: 600 !important;
+}
+
+.orderFormTabSetStyle td.tabButtonTopSelected, .orderFormTabSetStyle td.tabButtonTopSelectedOver, .orderFormTabSetStyle td.tabButtonTopSelectedDown,
+.orderFormTabSetStyle td.tabButtonTopSelectedFocused, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedOver,
+.orderFormTabSetStyle td.tabButtonTopDown, .orderFormTabSetStyle td.tabButtonTopSelectedFocused, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedOver,
+.orderFormTabSetStyle td.tabButtonTopSelectedFocusedDown, .orderFormTabSetStyle td.tabButtonTopSelectedOver, .orderFormTabSetStyle td.tabButtonTopSelectedDown,
+.orderFormTabSetStyle td.tabButtonTopSelected, .orderFormTabSetStyle td.tabButtonTopFocusedDown, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedDown,
+.orderFormTabSetStyle td.tabButtonTopDown, .orderFormTabSetStyle td.tabButtonTopSelectedDown {
+    background: #f4f4f4 !important;
+    color: #00a0d0 !important;
+    border: 1px solid #ddd !important;
+    font-size: 15px !important;
+    box-shadow: none !important;
+    /* border-bottom: none !important; */
+    border-radius: 3px !important;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: 600 !important;
+}
+
+.project_label_section {
+    color: #333;
+    font-family: OpenSans-Regular;
+}
+
+.project_label_section .project_label_heading {
+    color: #00a0d0;
+    font-family: OpenSans-SemiBold;
+    font-weight: 700;
+}
+
+/*Second Level Tabs*/
+.tabSetContainer .tabBarTop {
+    padding: 0 !important;
+    top: -2px !important;
+}
+
+.tabSetContainer .tabBarTop div[role="tab"] {
+    border-right: 1px solid #ddd !important;
+}
+
+.tabSetContainer .tabBarTop div[role="tab"]:nth-child (2) {
+    border-right: 0px !important;
+}
+
+.tabSetContainer .tabBarTop td.tabButtonTop .tabSetContainer .tabBarTop td.tabButtonTopSelected,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedOver,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedDown,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedFocused,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedFocusedOver,
+.tabSetContainer .tabBarTop td.tabButtonTopDown, .tabSetContainer .tabBarTop td.tabButtonTopSelectedFocused,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedFocusedOver,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedFocusedDown,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedOver,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedDown,
+.tabSetContainer .tabBarTop td.tabButtonTopSelected, .tabSetContainer .tabBarTop td.tabButtonTopFocusedDown,
+.tabSetContainer .tabBarTop td.tabButtonTopSelectedFocusedDown,
+.tabSetContainer .tabBarTop td.tabButtonTopDown, .tabSetContainer .tabBarTop td.tabButtonTopSelectedDown {
+    border: none !important;
+}
+
+.btn-icon {
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 12px !important;
+    font-family: 'OpenSans_Semibold' !important;
+    padding: 6px 12px !important;
+    border: 1px solid #c3c4be!important;
+    background: #fff!important;
+    color: #666;
+    top: 5px !important;
+}
+
+.profile_dropDown{
+	background-color:#fff !important;
+	border:0px !important;
+}
+.btn-icon-cancel {
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 12px !important;
+    font-family: 'OpenSans_Semibold' !important;
+    padding: 4px 11px !important;
+	border: 1px solid #c3c4be !important;
+	background: #fff !important;
+    color: #666;
+    top: 0px !important;
+}
+
+.formButtonsLayout td[class *="button"] {
+    background: transparent !important;
+    border: 0px !important;
+    color: inherit;
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+}
+
+.btn-icon:hover {
+    background: #c3c4be;
+    
+}
+
+.btn-icon-cancel:hover {
+    background: #c3c4be;
+    color: #fff;
+}
+
+.formButtonsLayout .fa {
+    font-size: 13px;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+}
+
+/*=====================================*/
+/*=====================================*/
+/*CSS for Cow Accordions*/
+.sectionHeaderopened, .sectionHeaderclosed, .sectionHeaderDisabledopened,
+.sectionHeaderDisabledclosed {
+    background: none !important;
+    /* border-bottom: 1px solid #333 !important; */
+    border-top: none !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.sectionHeaderopened img, .sectionHeaderclosed img,
+.sectionHeaderDisabledopened img, .sectionHeaderDisabledclosed img {
+    width: 22px;
+    height: 14px;
+    margin-top: 4px !important;
+    float: right;
+}
+
+.selected-hardware-section .listGrid .listTable tbody tr td {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.selected-hardware-section .listGrid .listTable > tbody > tr > td {
+    border-bottom: 1px solid #d1d3d4 !important;
+}
+
+.selected-hardware-section .listGrid .listTable {
+    width: 100% !important;
+}
+
+td.tabButtonTopSelected, td.tabButtonTopSelectedOver, .td.tabButtonTopSelectedDown, .td.tabButtonTopSelectedFocused, td.tabButtonTopSelectedFocusedOver, td.tabButtonTopDown, td.tabButtonTopSelectedFocused, td.tabButtonTopSelectedFocusedOver, td.tabButtonTopSelectedFocusedDown, td.tabButtonTopSelectedOver, td.tabButtonTopSelectedDown, td.tabButtonTopSelected, td.tabButtonTopFocusedDown, td.tabButtonTopSelectedFocusedDown, td.tabButtonTopDown, td.tabButtonTopSelectedDown {
+    background: #00a0d0 !important;
+    color: white !important;
+    border-radius: 3px !important;
+}
+
+.orderFormTabSetStyle td.tabButtonTopSelected, .orderFormTabSetStyle td.tabButtonTopSelectedOver, .orderFormTabSetStyle td.tabButtonTopSelectedDown, .orderFormTabSetStyle td.tabButtonTopSelectedFocused, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedOver, .orderFormTabSetStyle td.tabButtonTopDown, .orderFormTabSetStyle td.tabButtonTopSelectedFocused, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedOver, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedDown, .orderFormTabSetStyle td.tabButtonTopSelectedOver, .orderFormTabSetStyle td.tabButtonTopSelectedDown, .orderFormTabSetStyle td.tabButtonTopSelected, .orderFormTabSetStyle td.tabButtonTopFocusedDown, .orderFormTabSetStyle td.tabButtonTopSelectedFocusedDown, .orderFormTabSetStyle td.tabButtonTopDown, .orderFormTabSetStyle td.tabButtonTopSelectedDown {
+    background: #00a0d0 !important;
+    color: white !important;
+}
+
+/*=====================================*/
+/*CSS for Cow Buttons*/
+.pdf-btn img, .modifier-btn img {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.btn-toggle {
+    background: #e8e8e8;
+    border-radius: 0 0 3px 3px;
+}
+
+.btn-toggle .fa {
+    font-weight: bold;
+    font-size: 14px !important;
+    color: #b1adac !important
+}
+
+.popUp_footer .btn-primary {
+    background: #00a0d0 !important;
+    border: 1px solid #00a0d0 !important;
+    color: #fff !important;
+    font-family: 'OpenSans-regular' !important;
+    padding: 6px 0px !important;
+    left: auto !important;
+    right: 10px !important;
+	border-radius: 5px !important;
+}
+.popUpfooterfordot{
+	width:543px!important;
+}
+.popUp_footer .btn-primary table{
+	width:100% !important;
+}
+
+.popUp_footer .btn-secondary {
+	background: #00a0d0 !important;
+	border: 1px solid #00a0d0 !important;
+	color: #fff !important;
+	font-family: 'OpenSans-regular' !important;
+	padding: 6px 0px !important;
+	border-radius: 5px !important;
+	font-weight: bold !important;
+    text-transform: capitalize  !important;
+    font-size: 12px !important;
+    font-family: 'OpenSans_Semibold' !important;
+
+}
+ .infoLayout div[role="label"] table td.warningStyle{
+  color:red !important;
+ white-space:nowrap !important;
+ }
+ .importLabelStyle{
+	left:44% !important;
+	top: 1% !important;
+
+}
+.importStyle{
+	font-size: 20px;
+	font-family: 'OpenSans_regular' !important;
+
+}
+.btn-float {
+    left: 42% !important;
+}
+
+.remove-float {
+    left: 39% !important;
+    max-width:118%!important;
+}
+
+.btn-other td[class *="button"] {
+    background: transparent !important;
+    border: 0px !important;
+    color: inherit !important;
+    font-family: OpenSans_Regular;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.popUp_footer .btn-other {
+    background: #00a0d0 !important;
+    border: 1px solid #00a0d0 !important;
+    color: #fff !important;
+    font-family: 'OpenSans-regular' !important;
+    padding: 6px 0px !important;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+    text-transform: capitalize !important;
+    font-size: 12px !important;
+    font-family: 'OpenSans_Semibold' !important;
+}
+
+.popUp_footer .btn-other:hover {
+    background: #038fb9 !important;
+}
+
+.popUp_footer .btn-other:focus {
+    background: #038fb9 !important;
+}
+
+.popUp_footer .btn-default {
+    background: #ffffff !important;
+    color: #666 !important;
+	border: 1px solid #c3c4be !important;
+    padding: 6px 0px !important;
+	border-radius: 5px !important;
+}
+
+.btn-close {
+    background: #ffffff !important;
+    color: #666 !important;
+	border: 1px solid #c3c4be !important;
+	border-radius: 5px !important;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 12px !important;
+    font-family: 'OpenSans_Semibold' !important;
+    padding: 6px 0px !important;
+}
+
+.center-button {
+    left: 44% !important;
+}
+
+.popUp_addEditform .formCellError table {
+    width: 98%;
+    
+}
+
+.fields-btn-default {
+    background: #e7e8ea;
+    color: #45637a;
+    text-transform: capitalize;
+    font-size: 12px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.fields-btn-primary {
+    background: #00a0d0;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 12px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.project-tags {
+    background: #e7e8ea;
+    color: #45637a;
+    border-color: #b5c1ca;
+    font-size: 12px !important;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid #b5c1ca;
+}
+
+.icon-btn img {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+.icon-btn.btn-sm img {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.popUp_footer .btn-primary:hover, .popUp_footer .btn-secondary:hover {
+    background: #038fb9 !important;
+}
+
+.popUp_footer .btn-primary:focus, .popUp_footer .btn-secondary:focus {
+    background: #038fb9 !important;
+}
+
+.position-cancel {
+    left: 22% !important;
+}
+
+.position-addItem {
+    left: 30% !important;
+}
+
+.position-addRow {
+    left: 60% !important;
+}
+
+.position-addRow div {
+    max-width: 130% !important;
+    text-overflow: unset !important;
+}
+
+.action-btns .btn-default {
+    border: none !important;
+}
+
+/*=====================================*/
+/*CSS for Views Component*/
+.viewsComponentMainPanel {
+    display: table;
+    width: 100%;
+}
+
+.viewsComponentMainPanel .viewsComponnentLeftPanel {
+    display: table-cell;
+    height: 100%;
+    background: #6a8295;
+}
+
+.viewsComponentMainPanel .viewsComponnentRightPanel {
+    display: table-cell;
+    height: 100%;
+}
+
+.add-new-view, .add-new-view form table, .select-view, .select-view form table,
+.select-view form > table > tbody > tr > td {
+    width: 100% !important;
+}
+
+.add-new-view form table input[type="text"] {
+    width: 80% !important;
+    border: 0 !important;
+    padding: 3px 10px !important;
+    font-size: 10px;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.add-new-view form table {
+    height: 50px !important;
+}
+
+.add-new-view > div > div[role="button"] {
+    top: 12px !important;
+    left: auto !important;
+    right: 12px !important;
+    width: 52px !important;
+}
+
+.add-btn {
+    padding: 0px 18px !important;
+    font-size: 10px !important;
+    background: #eee !important;
+    color: #555 !important;
+    border-radius: 0 5px 5px 0;
+    border-left: 1px solid #ccc !important;
+    text-align: center !important;
+    font-weight: normal !important;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: bold;
+}
+
+.action-btns, .select-view {
+    margin-top: -35px;
+}
+
+.buttons-section > div > div[role="button"] {
+    position: static !important;
+    width: 150px !important;
+    float: left !important;
+    margin: 1px;
+}
+
+.buttons-section, .action-btn-section {
+    width: 660px !important;
+}
+
+.action-btn-section > div > div[role="button"] {
+    position: static !important;
+    float: right !important;
+}
+
+.select-view .labelAnchor {
+    color: #ffffff !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.search_op {
+    position: static !important;
+    margin-top: 10px;
+}
+
+.search_op table tr td input[type='text'] {
+    border: 0px;
+}
+
+.search_btn > div:before, .search_btnOver > div:before, .search_btnDown > div:before, .search_btnFocusedDown > div:before, .search_btnFocusedOver > div:before, .search_btnFocused > div:before {
+    top: 7px !important;
+}
+
+.xyz div[role="button"] {
+    top: 5px !important;
+}
+
+.search_op form table tr td:last-child {
+    background: #eeeeee;
+    border-radius: 0px 6px 6px 0px;
+}
+
+.search_op form table {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* .search_btn, .search_btnOver, .search_btnDown, .search_btnFocusedDown, .search_btnFocusedOver, .search_btnFocused{
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0px 6px 6px 0px;
+} */
+/* .search_op table tr td input[type='text'] {
+    width: 269px !important;
+    outline: 0 !important;
+    border-radius: 0px 6px 6px 0px;
+} */
+.search_btn > div:before, .search_btnOver > div:before, .search_btnDown > div:before,
+.search_btnFocusedDown > div:before, .search_btnFocusedOver > div:before,
+.search_btnFocused > div:before {
+    content: "\f002";
+    font-family: fontAwesome;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    margin: 0 auto;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #666;
+}
+
+.search_btn_dot > div:before, .search_btn_dotOver > div:before,
+.search_btn_dotDown > div:before, .search_btn_dotFocusedDown > div:before,
+.search_btn_dotFocusedOver > div:before, .search_btn_dotFocused > div:before {
+    left: 14px;
+}
+
+.search_icon div[role="button"] {
+    top: 11px !important;
+}
+
+.search_icon_email div[role="button"] {
+    top: 11px !important;
+}
+
+.btn-default td[class *="button"], .btn-close td[class *="button"] {
+    background: transparent !important;
+    border: 0px !important;
+    color: inherit !important;
+    font-family: OpenSans_Regular;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 0px !important;
+}
+
+.popUp_footer .btn-default:hover, .btn-default:focus, .btn-close:hover, .btn-close:focus {
+    background: #c3c4be !important;
+    color: #fff !important;
+}
+
+.btn-primary td[class *="button"] {
+    background: transparent !important;
+    border: 0px !important;
+    color: inherit !important;
+    font-family: OpenSans_Regular;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.btn-secondary td[class *="button"] {
+    background: transparent !important;
+    border: 0px !important;
+    color: inherit !important;
+    font-family: OpenSans_Regular;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.cowbtn-default td[class *="button"] {
+    background: #fff;
+    border: 1px solid #c3c4be;
+    padding: 6px 0px !important;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: OpenSans_Regular;
+    font-weight: 700;
+}
+
+.cowbtn-default td[class *="button"], .cowbtn-primary td[class *="button"],
+.cowbtn-primary-print td[class *="button"], .cowbtn-primary-migrate td[class *="button"], .cowbutton-primary td[class *="button"] {
+    background: transparent;
+    color: inherit;
+    border: 1px solid #00a0d0;
+    padding: 6px 0px 0px 0px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: OpenSans_Regular;
+    font-weight: 700;
+}
+
+.cowbtn-default {
+    color: #666;
+    background: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.cowbtn-default:hover {
+    background: #c3c4be;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.cowbtn-primary, .cowbutton-primary {
+    background: #00a0d0;
+    color: #fff;
+    border-radius: 5px;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.cowbtn-primary-print {
+    background: #00a0d0;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.cowbtn-primary-migrate {
+    background: #00a0d0;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    left: auto !important;
+    right: 0px !important;
+}
+
+.cowbtn-primary:hover, .cowbtn-primary-print:hover, .cowbtn-primary-migrate:hover, .cowbutton-primary:hover {
+    background: #038fb9;
+}
+
+/* .cowbtn-primary:focus,.cowbtn-primary-print:focus,.cowbtn-primary-migrate:focus{
+	background: #038fb9 !important;
+} */
+.cowbtn-primary:focus {
+    background: #038fb9 !important;
+}
+
+.btn-default .fa {
+    font-size: 13px;
+}
+
+/*css to be removed*/
+.button-section-main {
+    position: absolute !important;
+}
+
+/*=====================================*/
+/*CSS for labels*/
+.windowHeader div[role="label"] table td {
+    color: #fff !important;
+    white-space: nowrap;
+    font-size: 14px !important;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: bold !important;
+}
+
+/*=====================================*/
+/*CSS for popup windows*/
+.windowBody {
+    border-radius: 0px !important;
+    border: 0px !important;
+    background: transparent;
+}
+
+.windowBody .listGrid, .dialogBody {
+    border: 0 !important;
+}
+
+.windowBody .listGrid table {
+    width: 100% !important;
+}
+
+.windowHeaderText, .dialogHeaderText, .dialogStatusBarText {
+    background: #00a0d0 !important;
+    padding-left: 0px !important;
+    color: white !important;
+}
+
+.notifications-container .pop-up-header, .notifications-container .windowHeader,
+.notifications-container .windowHeaderHilite, .notifications-container .dialogHeader,
+.notifications-container .dialogHeaderHilite {
+    border-radius: 0 !important;
+}
+
+.pop-up-header, .windowHeader, .windowHeaderHilite, .dialogHeader,
+.dialogHeaderHilite {
+    background: #00a0d0 !important;
+    border-bottom: 1px solid #00a0d0 !important;
+    border-radius: 5px 5px 0 0 !important;
+}
+
+.pop-up-header .windowHeaderText, .windowHeader .windowHeaderText,
+.windowHeaderHilite .windowHeaderText, .dialogHeader .windowHeaderText,
+.dialogHeaderHilite .windowHeaderText {
+    background: none;
+    font-size: 14px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+td.notification_msg {
+    font-size: 14px;
+}
+
+.pop-up-footer {
+    border-top: 1px solid #ddd;
+}
+
+.windowBackground, .dialogBackground {
+    background: transparent;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+}
+
+.upload-section {
+    border-top: 1px solid #e5e5e5;
+}
+
+.upload-layout form table tr td:first-child {
+    display: none !important;
+}
+
+.upload-layout form table tr td:last-child {
+    background: #e7e8ea;
+    border: 1px solid #b5c1ca;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: relative;
+    top: 4px;
+    left: 4px;
+}
+
+.search-form-input, .add-custom-modifier {
+    position: static !important;
+    float: right !important;
+    margin-right: 10px;
+}
+
+.search-form-input {
+    margin-right: 50px !important;
+}
+
+.add-custom-modifier-window .imgButton, .add-custom-modifier-window .imgButtonOver {
+    left: auto !important;
+    right: 10px !important;
+}
+
+div[role="alertdialog"] div[role="button"] td {
+    background: #00a0d0 !important;
+    border: 2px solid #00a0d0;
+}
+
+div[role="alertdialog"] div[role="button"] td:hover {
+    box-shadow: none !important;
+}
+
+/*=====================================*/
+/**/
+.heading-label-bold {
+    font-weight: bold;
+    font-family: 'OpenSans_regular' !important;
+}
+
+div[role="label"] table td {
+    font-family: 'OpenSans_regular';
+    color: black ;
+}
+
+/*=====================================*/
+/*Form Controls*/
+.form-control {
+    padding: 0 5px !important;
+}
+
+.form-control input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control.search input {
+    padding-right: 50px !important;
+}
+
+.form-control.search:after {
+    content: '\f002';
+    font-family: FontAwesome;
+    cursor: pointer;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0px 0px 0px 10px;
+    text-decoration: none;
+    color: #ababab;
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    font-size: 15px;
+    border-left: 1px solid #ccc;
+    padding: 9px 10px;
+    background: #eee;
+    border-radius: 0 5px 5px 0;
+}
+
+/*=====================================*/
+/*Landing page Notifications*/
+.notifications-container {
+    background: #f6f6f6 !important;
+    border: 1px solid #dedede;
+}
+
+.notifications-container .notifications .windowBody {
+    border: 1px solid #ddd !important;
+}
+
+.notifications-container > .windowBody {
+    border: none !important;
+}
+
+.notifications > div:nth-child (2) {
+    box-shadow: 0 1px 5px 0px #d2d2d2;
+}
+
+.notification-msg, .notification-msg:hover, .notification-msg:focus,
+.notification-msg:visited {
+    color: #00a0d0 !important;
+    font-size: 14px !important;
+    cursor: text;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.windowHeader .windowHeaderText {
+    font-size: 20px !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.notifications .windowHeader {
+    background: #858585 !important;
+    border-bottom: 1px solid #858585 !important;
+}
+
+.notifications .windowHeader .windowHeaderText {
+    background: none !important;
+    font-size: 14px !important;
+}
+
+/*====================================*/
+.currency-field {
+    line-height: 24px;
+}
+
+/*=============CSS for PopUp============*/
+.popUp_footer {
+    border-top: 1px solid #ddd;
+}
+
+.popUp_cancel {
+    position: static !important;
+    left: 0px !important;
+}
+
+.popUp_addEditform table tr td label {
+    font-size: 13px;
+    color: #333;
+}
+
+.popUp_addEditform table tr td input[type='text'] {
+    width: 96% !important;
+    border-radius: 4px;
+}
+
+.popUp_addEditform table tr td textarea {
+    width: 96% !important;
+    border-radius: 4px;
+}
+
+/* ============Tiles Management CSS ================================*/
+.tiles_mgmt_view {
+    left: auto !important;
+    right: 12px;
+    top: 48px !important;
+}
+
+.tiles_mgmt_header {
+    color: #fff !important;
+    font-size: 16px;
+    font-family: OpenSans_Semibold;
+}
+
+.tiles_mgmt_section .listGrid {
+    border: 0px;
+}
+
+.tiles_mgmt_section .listTable tr td[class *="cell"] {
+    background: #fff !important;
+    border-bottom: 1px solid #dedede !important;
+    border-top: 1px solid #dedede !important;
+    color: #666 !important;
+    font-family: OpenSans_SemiBold !important;
+}
+
+.tilesListGrid table tr[role="listitem"] {
+    height: 32px;
+}
+
+.tilesListGrid table tr[role="listitem"]:nth-child(even) td {
+    background: #f5f5f5 !important;
+}
+
+.cowTiles {
+    background: #f8f8f8;
+    border: 2px solid rgb(227, 228, 230);
+    border-radius: 5px !important;
+}
+
+.cowTiles .tilesTextname {
+    font-size: 14px;
+    color: #00a0d0 !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+/*--------------------------------------------------------*/
+/*------------DOT Staus ---------------------------------*/
+.padded_vlayout {
+    background: #ffffff;
+    border: 2px solid rgb(227, 228, 230);
+    border-radius: 4px !important;
+    box-shadow: 0 1px 9px -1px #d2d2d2 !important;
+    -webkit-box-shadow: 0 1px 9px -1px #d2d2d2 !important;
+    -moz-box-shadow: 0 1px 9px -1px #d2d2d2 !important;
+}
+
+/*----------Door Order sheet form ------------------------*/
+.leftFormlayout {
+    border-right: 3px solid rgb(227, 228, 230);
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.rightFormlayout {
+    margin-top: 7px !important;
+
+}
+
+.dosBodylayout form label {
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    font-size: 11px !important;
+}
+
+.dosBodylayout form input {
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    font-size: 11px !important;
+}
+
+.dosBorderLayout {
+    background: #00a0d0;
+    height: 3px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.dosBodylayout {
+    /* 	margin-top: -10px; */
+    border-top: 3px solid rgb(227, 228, 230) !important;
+    border-bottom: 3px solid rgb(227, 228, 230) !important;
+}
+
+.soldToShipToTabLayout .tabBarTop {
+    margin-left: 19px !important;
+    padding-top: 0px !important;
+    height: 27px !important;
+}
+
+.soldToShipToTabLayout .tabSetContainer {
+    margin-left: 19px !important;
+}
+
+.shipToHlayout {
+    /* border-top: 1px solid #e6e7e8; */
+    margin-top: 8px !important;
+}
+
+.afterordFormLayout {
+    /* border-top: 4px solid rgb(227, 228, 230); */
+}
+
+.distributorInfoVlayout {
+    /* border-bottom: 1px solid #e6e7e8; */
+    /* margin-left:18px !important;
+	margin-right:10px !important; */
+    width: 96% !important;
+    /* margin-top:5px !important; */
+}
+
+.closeLayoutStyle {
+    margin-top: 7px !important;
+    left: auto !important;
+    right: 0px !important;
+}
+
+.formLayoutStyle {
+    margin-top: 5px !important;
+}
+
+.distributorInfoVlayout label {
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: 400 !important;
+    font-size: 11px !important;
+}
+
+.shipToHlayout {
+    /* margin-left:19px !important;
+	margin-right:10px !important; */
+    border-bottom: 1px solid #e6e7e8;
+    width: 98% !important;
+}
+
+.soldToHlayout {
+    /* margin-left:19px !important;
+	margin-right:10px !important; */
+    /* margin-top:1px !important; */
+    border-bottom: 1px solid #e6e7e8;
+    padding-top: -5px!important;
+
+}
+
+.soldToSectionStyle {
+    margin-left: 19px !important;
+    margin-right: 10px !important;
+    width: 100% !important;
+}
+
+.soldToHlayoutroleStyle {
+    padding-top: 2px !important;
+}
+
+.tansfershipmentHlayout, .orgpgmHlayout, .officeUseBottomHLayout, .tansfershipmentHlayoutCheckBox {
+    margin-left: 30px !important;
+    margin-right: 10px !important;
+    margin-top: 5px !important;
+}
+
+.officeUseHLayout {
+    margin-left: 35px !important;
+    margin-right: 10px !important;
+    margin-top: 5px !important;
+}
+
+.officeUseBottomHLayoutIE {
+    margin-left: 50px !important;
+    margin-right: 10px !important;
+    margin-top: 5px !important;
+}
+
+.officeUseHLayoutIE {
+    margin-left: 35px !important;
+    margin-right: 10px !important;
+}
+
+/* .officeUseHLayout div[role="button"],.officeUseBottomHLayout div[role="button"]{
+	margin-left:10px !important;
+} */
+.quotesInfoForm {
+    margin-left: 30px !important;
+    margin-right: 10px !important;
+    margin-top: 5px !important;
+}
+
+.CheckBoxStyle span {
+    margin-left: -1px !important;
+}
+
+.quotesInfoHlayout td table, .orgpgmHlayout td table, .officeUseHLayout td table, .officeUseBottomHLayout td table, .distributorInfoVlayout td table, .quotesInfoHlayout td table, .distributorInfoForm td table {
+    width: 100% !important;
+}
+
+/*  .shipToHlayout td input,.soldToHlayout td input{
+	width:93% !important;
+}  */
+.officeUseHLayout td textarea {
+    width: 97% !important;
+}
+
+.textAreaStyeForIE textarea {
+    height: 100% !important;
+}
+
+.orgpgmHlayout td input {
+    width: 82% !important;
+}
+
+/* .contactInfoHlayout td input{
+	width:86% !important;
+} */
+.shipFromMasonCityHLayout {
+
+    border-bottom: 1px solid rgb(227, 228, 230) !important;
+    margin-top: 5px!important;
+}
+
+.officeUseHLayout {
+    /* border-top: 1px solid #e6e7e8; */
+}
+
+/* .quotesInfoHlayout [class*="Disabled"]{
+	padding-left:1% !important;
+} */
+.quotesInfoHlayout {
+    border-bottom: 1px solid rgb(227, 228, 230) !important
+}
+
+.shipToHlayout .headerItem, .soldToHlayout .headerItem {
+    font-size: 18px;
+    font-family: OpenSans_regular;
+    text-transform: uppercase;
+    /* margin-left:10px !important; */
+}
+
+/* .shipToHlayout .formTitle,.soldToHlayout .formTitle{
+	width:108.33px !important;
+} */
+.shipToHlayout .headerItem {
+    margin-bottom: 7px !important;
+}
+.styleforlabel{
+	color: black !important;
+	font-family: 'OpenSans_regular' !important;
+}
+
+.formTitle span:first-of-type{
+	color: black !important;
+}
+.styleforlabel span:first-of-type{
+	color: black !important;
+	font-family: 'OpenSans-Semibold' !important;
+}
+
+
+.shipFromMasonCityFormStyle {
+	margin-left: 30px !important;
+    margin-right: 10px !important;
+
+    margin-top:-23px!important;
+}
+.tansfershipmentSectionStyle{
+	border-left: 1px solid rgb(227, 228, 230) !important;
+	height:165px !important;
+}
+.contactInfoHlayout {
+    /* 	border-top: 1px solid #e6e7e8; */
+    margin-left: 19px !important;
+    margin-right: 10px !important;
+    border: 0px !important;
+
+}
+
+.contactInfoSectioStyle {
+    margin-top: 13px !important;
+}
+
+/* .contactgroupStyle{
+	    color: #4d4d4d !important;
+    font-family: RobotoLight !important;
+    font-weight: bold;
+     font-size: 12px !important;
+    padding-left: 15px !important;
+	padding-left:15px !important;
+} */
+.leftFormlayout div[role="label"] table td.contactgroupStyle {
+    color: #4d4d4d !important;
+    font-family: RobotoLight !important;
+    font-weight: bold;
+    font-size: 13px !important;
+    padding-left: 15px !important;
+    padding-left: 15px !important;
+}
+
+.distributorInfoForm {
+    /* 	border-top: 1px solid #e6e7e8; */
+    margin-left: 19px !important;
+    margin-right: 10px !important;
+
+}
+
+.distributorInfoForm div[eventproxy*="DynamicForm"] label {
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    font-size: 11px !important;
+}
+
+/* .contactInfoHlayout .textItemLite{
+	width:216px !important;
+} */
+/* .contactInfoHlayout .selectItemLiteText{
+	width:212px !important;
+} */
+.quotesInfoVlayout, .quotesInfoVlayout {
+    border-bottom: 1px solid #e6e7e8;
+}
+
+.soldToHlayout div[role="button"] {
+    left: auto !important;
+    right: 28px;
+    /* top: 10px !important; */
+}
+
+.shipToHlayout div[role="button"] {
+    left: auto !important;
+    right: 38px;
+    /* top: 10px !important; */
+}
+
+.shipToJobSiteStyle span {
+    margin-left: -1px !important;
+}
+
+.dosBodylayout .officeUseHLayout div[eventproxy*="DynamicForm"] label {
+    color: #555 !important;
+    font-family: OpenSans_Light !important;
+    font-size: 11px !important;
+}
+
+.dosBodylayout form b {
+    font-weight: 400 !important;
+}
+
+.selectDistributorsGrid td[class *="headerButton"] {
+    background: #4bb7d8 !important;
+    color: #fff !important;
+    border-right: 1px solid #fff;
+}
+
+.selectDistributorsGrid .sorterButton {
+    background: #4bb7d8 !important;
+}
+
+.selectDistributorsGrid .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.selectDistributorsGrid .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.selectDistributorsGrid .listTable tr td[class *="cellSelected"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.closeOrdForm {
+    left: auto !important;
+    right: -20px;
+    height: 7px !important;
+    top: 0px !important;
+}
+
+.dosHeadlayout td[class *="button"] {
+    background: transparent !important;
+    border: 0px !important;
+    color: inherit;
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+}
+
+.dosHeadlayout .page_heading {
+    padding-left: 35px !important;
+}
+
+.dosHeadlayout .fa {
+    font-size: 13px;
+    position: absolute;
+    top: 3px;
+    left: 8px;
+}
+
+.orderFormCell {
+    padding: 5px !important;
+}
+
+.companyInfoSeparator {
+    margin: 0;
+    /* padding: 6px; */
+    padding-bottom: 5px !important;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: #000;
+    font-family: 'OpenSans-Semibold';
+}
+
+.titleStyle {
+    display: none !important;
+}
+
+.companyInfofeilds {
+    padding-right: 150px !important;
+    font-family: 'OpenSans_regular' !important;
+    color: black !important;
+}
+
+.companyContainerStyle {
+    margin-top: 15px !important;
+}
+
+.sectionStyle {
+    /* height:450px !important; */
+}
+
+.quoteRevisionStyle input {
+    /* margin-top:17px !important; */
+}
+
+.orderFormHeaderLayoutCollapsed .listTable tr td, .orderFormHeaderLayoutExpanded .listTable tr td, .orderFormHeaderLayout .listTable tr td {
+    color: #000 !important;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.orderFormHeaderLayoutCollapsed .listTable tr:nth-child(odd) td, .orderFormHeaderLayoutExpanded .listTable tr:nth-child(odd) td, .orderFormHeaderLayout .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    border: 1px solid #736e6e !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+
+}
+
+.orderFormHeaderLayoutCollapsed .listTable tr:nth-child(even) td, .orderFormHeaderLayoutExpanded .listTable tr:nth-child(even) td, .orderFormHeaderLayout .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    border: 1px solid #736e6e !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+}
+
+.afterordFormLayout .orderFormHeaderLayout .listTable tr td.editedCell {
+    background: #bab8b8 !important;
+}
+
+.orderFormHeaderLayoutCollapsed .listTable tr td[class *="cellSelected"], .orderFormHeaderLayoutExpanded .listTable tr td[class *="cellSelected"], .orderFormHeaderLayout .listTable tr td[class *="cellSelected"], .orderFormHeaderLayout .listTable tr td[class *="Selected"], .orderFormHeaderLayout .listTable tr td[class *="SelectedCellAltCol"], .orderFormHeaderLayoutCollapsed .listTable tr td[class *="Selected"], .orderFormHeaderLayoutCollapsed .listTable tr td[class *="SelectedCellAltCol"], .orderFormHeaderLayoutExpanded .listTable tr td[class *="Selected"], .orderFormHeaderLayoutExpanded .listTable tr td[class *="SelectedCellAltCol"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+    border: 1px solid #736e6e !important;
+    border-right: 0px !important;
+    border-top: 0px !impportant;
+}
+
+.sectionStackStyle div[eventproxy*="isc_SectionStackSection_2"] div[eventproxy*="isc_SectionStackSection_2_controlsLayout"] {
+    width: 100% !important;
+    left: 10px !important;
+
+}
+.sectionStackStyle div[eventproxy*="isc_SectionStackSection_6"] div[eventproxy*="isc_SectionStackSection_6_controlsLayout"]{
+    width:100% !important;
+    left:10px !important;
+}
+.sectionStackStyle div[eventproxy*="isc_SectionStackSection_4"] div[eventproxy*="isc_SectionStackSection_4_controlsLayout"]{
+    width:100% !important;
+    left:10px !important;
+}
+.sectionStackStyle div[eventproxy*="isc_SectionStackSection_8"] div[eventproxy*="isc_SectionStackSection_8_controlsLayout"]{
+    width:100% !important;
+    left:10px !important;
+}
+.order_sd{
+	left:140px !important;
+	top:97px !important;
+}
+
+.gridHeader .windowHeaderText {
+    padding-left: 0px !important;
+}
+
+.dosHeadlayout div[eventproxy *="textCanvasID"] {
+    /* left:670px !important; */
+    left: auto !important;
+    right: 45px !important;
+}
+ .orderFormHeaderLayout .listGrid div[eventproxy*="Toolbar"],.orderFormHeaderLayout .testcss  div[eventproxy*="Toolbar"]{
+    background: #00a0d0 !important;
+}
+
+.orderFormHeaderLayout .listGrid [class *="headerButton"],.orderFormHeaderLayout .testcss [class *="headerButton"],  .orderFormHeaderLayoutCollapsed .listGrid [class *="headerButton"],.orderFormHeaderLayoutCollapsed .testcss [class *="headerButton"],.orderFormHeaderLayoutExpanded .listGrid [class *="headerButton"], orderFormHeaderLayoutExpanded .testcss [class *="headerButton"],.orderFormTabSetStyle .testcss [class *="headerButton"]{
+    border: 1px solid #fff !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+    text-align:center !important;
+    font-size:11px !important;
+    background-color:#00a0d0 !important;
+    color:white !important;
+}
+
+/* .orderFormHeaderLayout .listGrid .listTable{
+	width:100%;
+width:99.5% !important;
+}
+.orderFormHeaderLayout .listGrid .DOOR_ORDER1_body{
+	width:99.5% !important;
+} */
+
+.orderFormHeaderLayout div[eventproxy*="DOOR_ORDER1_headerLayout"] {
+    width: 100% !important;
+}
+
+/* .orderFormHeaderLayout div[eventproxy*="isc_Toolbar_2"]{
+	width:1306px !important;
+} */
+.orderFormHeaderLayout table tr td.emptyMessage, .orderFormHeaderLayoutCollapsed table tr td.emptyMessage, .orderFormHeaderLayoutExpanded table tr td.emptyMessage {
+    padding: 0px !important;
+}
+
+.officeUseHLayout .headerItem, .headerItemRTL, .headerItemDisabled, .headerItemDisabledRTL, .headerItemError, .headerItemErrorRTL {
+    font-family: 'OpenSans_regular' !important;
+    font-weight: normal !important;
+    font-size: 11px !important;
+}
+
+.officeUseBottomHLayout .headerItem, .headerItemRTL, .headerItemDisabled, .headerItemDisabledRTL, .headerItemError, .headerItemErrorRTL {
+    font-family: 'OpenSans_regular' !important;
+    font-weight: normal !important;
+    font-size: 11px !important;
+}
+
+.checkBoxStyle span {
+    margin-left: 0px !important;
+}
+
+/* Disabling Feilds */
+.disabledFeild .textItemLite, .disabledFeild .textItemLiteRTL, .disabledFeild .textItemLiteFocused, .disabledFeild .textItemLiteFocusedRTL, .disabledFeild .textItemLiteDisabled, .disabledFeild .textItemLiteDisabledRTL, .disabledFeild .textItemLiteError, .disabledFeild .textItemLiteErrorRTL, .disabledFeild .textItemLitePending, .disabledFeild .textItemLitePendingRTL, .disabledFeild .textItemLitePendingFocused, .disabledFeild .textItemLitePendingFocusedRTL, .disabledFeild .textItemLitePendingDisabled, .disabledFeild .textItemLitePendingDisabledRTL, .disabledFeild .textItemLitePendingError, .disabledFeild .textItemLitePendingErrorRTL, .disabledFeild .textItemLiteHint, .disabledFeild .textItemLiteHintRTL, .disabledFeild .textItemLiteDisabledHint, .disabledFeild .textItemLiteDisabledHintRTL {
+    background: #f4f4f4 !important;
+
+}
+
+.disabledFeildIE .textItemLite, .disabledFeildIE .textItemLiteRTL, .disabledFeildIE .textItemLiteFocused, .disabledFeildIE .textItemLiteFocusedRTL, .disabledFeildIE .textItemLiteDisabled, .disabledFeildIE .textItemLiteDisabledRTL, .disabledFeildIE .textItemLiteError, .disabledFeildIE .textItemLiteErrorRTL, .disabledFeildIE .textItemLitePending, .disabledFeildIE .textItemLitePendingRTL, .disabledFeildIE .textItemLitePendingFocused, .disabledFeildIE .textItemLitePendingFocusedRTL, .disabledFeildIE .textItemLitePendingDisabled, .disabledFeildIE .textItemLitePendingDisabledRTL, .disabledFeildIE .textItemLitePendingError, .disabledFeildIE .textItemLitePendingErrorRTL, .disabledFeildIE .textItemLiteHint, .disabledFeildIE .textItemLiteHintRTL, .disabledFeildIE .textItemLiteDisabledHint, .disabledFeildIE .textItemLiteDisabledHintRTL {
+    background: #f4f4f4 !important;
+
+}
+
+.disabledFeildIE input {
+    height: 100% !important;
+}
+
+.cellStyleForIE input {
+    height: 100% !important;
+}
+
+/* AddEditItemMarkNum Style */
+.AddEditItemMarkNumGridStyle .listTable tr td {
+    font-size: 12px !important;
+    color: black !important;
+    /* 	text-align: center; */
+    font-family: 'OpenSans_regular' !important;
+    /* padding-left: 3px !important; */
+}
+
+.AddEditItemMarkNumGridStyle .listTable tr:nth-child(odd) td, .AddEditItemMarkNumGridStyle .listTable tr:nth-child(odd) td input {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.AddEditItemMarkNumGridStyle .listTable tr:nth-child(even) td, .AddEditItemMarkNumGridStyle .listTable tr:nth-child(even) td input {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.AddEditItemMarkNumGridStyle .listTable tr td[class *="cellSelected"] {
+    background: #00a0d0 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.AddEditItemMarkNumGridStyle td[class *="headerButton"] {
+    background: #4bb7d8 !important;
+    color: #fff !important;
+    border-right: 1px solid #fff;
+}
+
+.AddEditItemMarkNumGridStyle .sorterButton {
+    background: #4bb7d8 !important;
+}
+
+.AddEditItemMarkNumGridStyle div[eventproxy*="Toolbar"] {
+    background: #4bb7d8 !important;
+}
+
+.AddEditItemMarkNumGridStyle .listTable td {
+    padding: 0px !important;
+}
+
+.AddEditItemMarkNumGridStyle img {
+    height: 10px !important;
+}
+
+.AddEditItemMarkNumGridStyle .spinnerItemDecrease, .AddEditItemMarkNumGridStyle .spinnerItemDecreaseDisabled, .AddEditItemMarkNumGridStyle .spinnerItemDecrease, .AddEditItemMarkNumGridStyle .spinnerItemDecreaseOver, .AddEditItemMarkNumGridStyle .spinnerItemDecreaseFocused, .AddEditItemMarkNumGridStyle .spinnerItemDecreaseFocusedOver {
+    background-position: 0px -5px !important;
+}
+
+.itemMarkLabelStyle {
+    color: #000;
+    font-size: 13px;
+    padding-top: 10px;
+
+}
+
+.button-icon {
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 12px !important;
+    font-family: 'OpenSans_Semibold' !important;
+    padding: 3px 6px !important;
+    border: 1px solid #c3c4be;
+    background: #fff;
+    color: #666;
+    top: 1px !important;
+}
+
+.button-icon:hover {
+    background: #c3c4be;
+    color: #fff;
+}
+
+/* stock Item Grid Style */
+.stockGridStyle [class *="headerButton"], .partGridStyle [class *="headerButton"] {
+    border: 1px solid #fff !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+    border-bottom: 0px !important;
+    text-align: center !important;
+    color: white !important;
+    background: #00a0d0 !important;
+}
+
+.stockGridStyle div[eventproxy*="Toolbar"], .partGridStyle div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.stockGridStyle .listTable tr td, .partGridStyle .listTable tr td {
+    color: black;
+    font-family: 'OpenSans_regular' !important;
+}
+
+.stockGridStyle .listTable tr:nth-child(odd) td, .partGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    /* border:1px solid #b5c1ca !important;
+	  border-right:0px !important;   */
+
+}
+
+.stockGridStyle .listTable tr:nth-child(even) td, .partGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    /* border:1px solid #b5c1ca !important;
+	 border-right:0px !important;   */
+
+}
+
+.stockGridStyle .listTable tr td[class *="cellSelected"], .partGridStyle .listTable tr td[class *="cellSelected"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.stockGridStyle .sorterButton, .partGridStyle .sorterButton {
+    background: #00a0d0 !important;
+}
+
+.resetStockButtonStyle {
+    top: 19px !important;
+    margin-left: 4px !important;
+}
+
+.resetStockButtonStyle .fa-mail-forward:before, .resetStockButtonStyle .fa-share:before {
+    padding-right: 5px !important;
+}
+
+.resetStockButtonStyle .fa {
+    padding-bottom: 3px !important;
+}
+
+/* Mandatory Feild CSS */
+.mandatory .textItemLite, .mandatory .textItemLiteRTL, .mandatory .textItemLiteFocused, .mandatory .textItemLiteFocusedRTL, .mandatory .textItemLiteDisabled, .mandatory .textItemLiteDisabledRTL, .mandatory .textItemLiteError, .mandatory .textItemLiteErrorRTL, .mandatory .textItemLitePending, .mandatory .textItemLitePendingRTL, .mandatory .textItemLitePendingFocused, .mandatory .textItemLitePendingFocusedRTL, .mandatory .textItemLitePendingDisabled, .mandatory .textItemLitePendingDisabledRTL, .mandatory .textItemLitePendingError, .mandatory .textItemLitePendingErrorRTL, .mandatory .textItemLiteHint, .mandatory .textItemLiteHintRTL, .mandatory .textItemLiteDisabledHint, .mandatory .textItemLiteDisabledHintRTL, .mandatory .selectItemLiteControl, .mandatory .selectItemLiteControlRTL, .mandatory .selectItemLiteControlFocused, .mandatory .selectItemLiteControlFocusedRTL, .mandatory .selectItemLiteControlOver, .mandatory .selectItemLiteControlOverRTL, .mandatory .selectItemLiteControlFocusedOver, .mandatory .selectItemLiteControlFocusedOverRTL, .mandatory .selectItemLiteControlDisabled, .mandatory .selectItemLiteControlDisabledRTL, .mandatory .selectItemLiteControlError, .mandatory .selectItemLiteControlErrorRTL, .mandatory .selectItemLiteControlPending, .mandatory .selectItemLiteControlPendingRTL, .mandatory .selectItemLiteControlPendingFocused, .mandatory .selectItemLiteControlPendingFocusedRTL, .mandatory .selectItemLiteControlPendingOver, .mandatory .selectItemLiteControlPendingOverRTL, .mandatory .selectItemLiteControlPendingFocusedOver, .mandatory .selectItemLiteControlPendingFocusedOverRTL, .mandatory .selectItemLiteControlPendingDisabled, .mandatory .selectItemLiteControlPendingDisabledRTL, .mandatory .selectItemLiteControlPendingError, .mandatory .selectItemLiteControlPendingErrorRTL, .mandatory .selectItemLiteControlHint, .mandatory .selectItemLiteControlHintRTL, .mandatory .selectItemLiteControlDisabledHint, .mandatory .selectItemLiteControlDisabledHintRTL, .mandatory .textAreaItemLite, .mandatory .textAreaItemLiteRTL, .mandatory .textAreaItemLiteFocused, .mandatory .textAreaItemLiteFocusedRTL, .mandatory .textAreaItemLiteDisabled, .mandatory .textAreaItemLiteDisabledRTL, .mandatory .textAreaItemLiteError, .mandatory .textAreaItemLiteErrorRTL, .mandatory .textAreaItemLitePending, .mandatory .textAreaItemLitePendingRTL, .mandatory .textAreaItemLitePendingFocused, .mandatory .textAreaItemLitePendingFocusedRTL, .mandatory .textAreaItemLitePendingDisabled, .mandatory .textAreaItemLitePendingDisabledRTL, .mandatory .textAreaItemLitePendingError, .mandatory .textAreaItemLitePendingErrorRTL, .mandatory .textAreaItemLiteHint, .mandatory .textAreaItemLiteHintRTL, .mandatory .textAreaItemLiteDisabledHint, .mandatory .textAreaItemLiteDisabledHintRTL {
+    background: #f7f777 !important;
+}
+
+.mandatoryIE .textItemLite, .mandatoryIE .textItemLiteRTL, .mandatoryIE .textItemLiteFocused, .mandatoryIE .textItemLiteFocusedRTL, .mandatoryIE .textItemLiteDisabled, .mandatoryIE .textItemLiteDisabledRTL, .mandatoryIE .textItemLiteError, .mandatoryIE .textItemLiteErrorRTL, .mandatoryIE .textItemLitePending, .mandatoryIE .textItemLitePendingRTL, .mandatoryIE .textItemLitePendingFocused, .mandatoryIE .textItemLitePendingFocusedRTL, .mandatoryIE .textItemLitePendingDisabled, .mandatoryIE .textItemLitePendingDisabledRTL, .mandatoryIE .textItemLitePendingError, .mandatoryIE .textItemLitePendingErrorRTL, .mandatoryIE .textItemLiteHint, .mandatoryIE .textItemLiteHintRTL, .mandatoryIE .textItemLiteDisabledHint, .mandatoryIE .textItemLiteDisabledHintRTL, .mandatoryIE .selectItemLiteControl, .mandatoryIE .selectItemLiteControlRTL, .mandatoryIE .selectItemLiteControlFocused, .mandatoryIE .selectItemLiteControlFocusedRTL, .mandatoryIE .selectItemLiteControlOver, .mandatoryIE .selectItemLiteControlOverRTL, .mandatoryIE .selectItemLiteControlFocusedOver, .mandatoryIE .selectItemLiteControlFocusedOverRTL, .mandatoryIE .selectItemLiteControlDisabled, .mandatoryIE .selectItemLiteControlDisabledRTL, .mandatoryIE .selectItemLiteControlError, .mandatoryIE .selectItemLiteControlErrorRTL, .mandatoryIE .selectItemLiteControlPending, .mandatoryIE .selectItemLiteControlPendingRTL, .mandatoryIE .selectItemLiteControlPendingFocused, .mandatoryIE .selectItemLiteControlPendingFocusedRTL, .mandatoryIE .selectItemLiteControlPendingOver, .mandatoryIE .selectItemLiteControlPendingOverRTL, .mandatoryIE .selectItemLiteControlPendingFocusedOver, .mandatoryIE .selectItemLiteControlPendingFocusedOverRTL, .mandatoryIE .selectItemLiteControlPendingDisabled, .mandatoryIE .selectItemLiteControlPendingDisabledRTL, .mandatoryIE .selectItemLiteControlPendingError, .mandatoryIE .selectItemLiteControlPendingErrorRTL, .mandatoryIE .selectItemLiteControlHint, .mandatoryIE .selectItemLiteControlHintRTL, .mandatoryIE .selectItemLiteControlDisabledHint, .mandatoryIE .selectItemLiteControlDisabledHintRTL, .mandatoryIE .textAreaItemLite, .mandatoryIE .textAreaItemLiteRTL, .mandatoryIE .textAreaItemLiteFocused, .mandatoryIE .textAreaItemLiteFocusedRTL, .mandatoryIE .textAreaItemLiteDisabled, .mandatoryIE .textAreaItemLiteDisabledRTL, .mandatoryIE .textAreaItemLiteError, .mandatoryIE .textAreaItemLiteErrorRTL, .mandatoryIE .textAreaItemLitePending, .mandatoryIE .textAreaItemLitePendingRTL, .mandatoryIE .textAreaItemLitePendingFocused, .mandatoryIE .textAreaItemLitePendingFocusedRTL, .mandatoryIE .textAreaItemLitePendingDisabled, .mandatoryIE .textAreaItemLitePendingDisabledRTL, .mandatoryIE .textAreaItemLitePendingError, .mandatoryIE .textAreaItemLitePendingErrorRTL, .mandatoryIE .textAreaItemLiteHint, .mandatoryIE .textAreaItemLiteHintRTL, .mandatoryIE .textAreaItemLiteDisabledHint, .mandatory .textAreaItemLiteDisabledHintRTL {
+    background: #f7f777 !important;
+    padding-bottom: 6px !important;
+    padding-top: 2px !important;
+}
+
+
+.non-mandatory .textItemLite, .non-mandatory .textItemLiteRTL, .non-mandatory .textItemLiteFocused, .non-mandatory .textItemLiteFocusedRTL, .non-mandatory .textItemLiteDisabled, .non-mandatory .textItemLiteDisabledRTL, .non-mandatory .textItemLiteError, .non-mandatory .textItemLiteErrorRTL, .non-mandatory .textItemLitePending, .non-mandatory .textItemLitePendingRTL, .non-mandatory .textItemLitePendingFocused, .non-mandatory .textItemLitePendingFocusedRTL, .non-mandatory .textItemLitePendingDisabled, .non-mandatory .textItemLitePendingDisabledRTL, .non-mandatory .textItemLitePendingError, .non-mandatory .textItemLitePendingErrorRTL, .non-mandatory .textItemLiteHint, .non-mandatory .textItemLiteHintRTL, .non-mandatory .textItemLiteDisabledHint, .non-mandatory .textItemLiteDisabledHintRTL, .non-mandatory .selectItemLiteControl, .non-mandatory .selectItemLiteControlRTL, .non-mandatory .selectItemLiteControlFocused, .non-mandatory .selectItemLiteControlFocusedRTL, .non-mandatory .selectItemLiteControlOver, .non-mandatory .selectItemLiteControlOverRTL, .non-mandatory .selectItemLiteControlFocusedOver, .non-mandatory .selectItemLiteControlFocusedOverRTL, .non-mandatory .selectItemLiteControlDisabled, .non-mandatory .selectItemLiteControlDisabledRTL, .non-mandatory .selectItemLiteControlError, .non-mandatory .selectItemLiteControlErrorRTL, .non-mandatory .selectItemLiteControlPending, .non-mandatory .selectItemLiteControlPendingRTL, .non-mandatory .selectItemLiteControlPendingFocused, .non-mandatory .selectItemLiteControlPendingFocusedRTL, .non-mandatory .selectItemLiteControlPendingOver, .non-mandatory .selectItemLiteControlPendingOverRTL, .non-mandatory .selectItemLiteControlPendingFocusedOver, .non-mandatory .selectItemLiteControlPendingFocusedOverRTL, .non-mandatory .selectItemLiteControlPendingDisabled, .non-mandatory .selectItemLiteControlPendingDisabledRTL, .non-mandatory .selectItemLiteControlPendingError, .non-mandatory .selectItemLiteControlPendingErrorRTL, .non-mandatory .selectItemLiteControlHint, .non-mandatory .selectItemLiteControlHintRTL, .non-mandatory .selectItemLiteControlDisabledHint, .non-mandatory .selectItemLiteControlDisabledHintRTL, .non-mandatory .textAreaItemLite, .non-mandatory .textAreaItemLiteRTL, .non-mandatory .textAreaItemLiteFocused, .non-mandatory .textAreaItemLiteFocusedRTL, .non-mandatory .textAreaItemLiteDisabled, .non-mandatory .textAreaItemLiteDisabledRTL, .non-mandatory .textAreaItemLiteError, .non-mandatory .textAreaItemLiteErrorRTL, .non-mandatory .textAreaItemLitePending, .non-mandatory .textAreaItemLitePendingRTL, .non-mandatory .textAreaItemLitePendingFocused, .non-mandatory .textAreaItemLitePendingFocusedRTL, .non-mandatory .textAreaItemLitePendingDisabled, .non-mandatory .textAreaItemLitePendingDisabledRTL, .non-mandatory .textAreaItemLitePendingError, .non-mandatory .textAreaItemLitePendingErrorRTL, .non-mandatory .textAreaItemLiteHint, .non-mandatory .textAreaItemLiteHintRTL, .non-mandatory .textAreaItemLiteDisabledHint, .non-mandatory .textAreaItemLiteDisabledHintRTL {
+    background: white !important;
+}
+
+
+/* Add Edit Manufacturer Model Pop Up Style */
+.mfgModelGridStyle [class *="headerButton"] {
+    border: 1px solid #fff !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+    border-bottom: 0px !important;
+    text-align: left !important;
+    color: white !important;
+    background: #00a0d0 !important;
+}
+
+.mfgModelGridStyle div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.mfgModelGridStyle .listTable tr td {
+    color: #000;
+}
+
+.mfgModelGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    /*  border:1px solid #b5c1ca !important;
+	  border-right:0px !important;    */
+
+}
+
+.mfgModelGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    /* border:1px solid #b5c1ca !important;
+	 border-right:0px !important;    */
+
+}
+
+.mfgModelGridStyle .listTable tr td[class *="cellSelected"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.mfgModelGridStyle .sorterButton {
+    background: #00a0d0 !important;
+}
+
+.mfgModelGridStyle .listTable tr td input {
+    padding: 0px !important;
+}
+
+.mfgModelGridStyle .selectItemLiteText, .mfgModelGridStyle .selectItemLiteTextRTL, .mfgModelGridStyle .selectItemLiteTextFocused, .mfgModelGridStyle .selectItemLiteTextFocusedRTL, .mfgModelGridStyle .selectItemLiteTextDisabled, .mfgModelGridStyle .selectItemLiteTextDisabledRTL, .mfgModelGridStyle .selectItemLiteTextError, .mfgModelGridStyle .selectItemLiteTextErrorRTL, .mfgModelGridStyle .selectItemLiteTextPending, .mfgModelGridStyle .selectItemLiteTextPendingRTL, .mfgModelGridStyle .selectItemLiteTextPendingFocused, .mfgModelGridStyle .selectItemLiteTextPendingFocusedRTL, .mfgModelGridStyle .selectItemLiteTextPendingDisabled, .mfgModelGridStyle .selectItemLiteTextPendingDisabledRTL, .mfgModelGridStyle .selectItemLiteTextPendingError, .mfgModelGridStyle .selectItemLiteTextPendingErrorRTL, .mfgModelGridStyle .selectItemLiteTextHint, .mfgModelGridStyle .selectItemLiteTextHintRTL, .mfgModelGridStyle .selectItemLiteTextDisabledHint, .mfgModelGridStyle .selectItemLiteTextDisabledHintRTL {
+    padding: 0px !important;
+}
+
+.attachmentGridStyle [class *="headerButton"] {
+    border: 1px solid #fff !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+    border-bottom: 0px !important;
+    text-align: left !important;
+    color: white !important;
+    background: #00a0d0 !important;
+}
+
+.attachmentGridStyle div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.attachmentGridStyle .listTable tr td {
+    color: #000;
+}
+
+.attachmentGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    /*  border:1px solid #b5c1ca !important;
+	  border-right:0px !important;    */
+
+}
+
+.attachmentGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+    /* border:1px solid #b5c1ca !important;
+	 border-right:0px !important;    */
+
+}
+
+.attachmentGridStyle .listTable tr td[class *="cellSelected"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.attachmentGridStyle .sorterButton {
+    background: #00a0d0 !important;
+}
+
+/* Drop Down Style */
+.pickListMenu {
+    z-index: 99999999 !important;
+}
+
+.pickListMenu .pickListMenuBody .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    text-align: left !important;
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    overflow : visible !important;
+
+}
+
+.pickListMenu .pickListMenuBody .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    text-align: left !important;
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    overflow : visible !important;
+}
+
+.pickListMenu .pickListMenuBody .listTable tr td[class *="cellSelected"] {
+    background: #66c6e3 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+     overflow : visible !important;
+}
+
+.pickListMenu .pickListMenuBody .listTable tr td div {
+    white-space: pre-wrap !important;
+        overflow : visible !important;
+}
+
+.pickListMenu div[eventproxy*="Toolbar"] td {
+    background: #00a0d0 !important;
+    color: white !important;
+}
+
+.pickListMenu div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.orderFormHeaderLayoutCollapsed {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    top: 55px !important;
+}
+
+.orderFormHeaderLayoutExpanded {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    height: 400px !important;
+    /* top:325px !important; */
+}
+
+.orderFormHeaderLayoutCollapsed .listGrid [class *="headerButton"], .orderFormHeaderLayoutExpanded .listGrid [class *="headerButton"] {
+    border: 1px solid #fff !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+    text-align: center !important;
+}
+
+.orderFormHeaderLayoutCollapsed .listGrid div[eventproxy*="Toolbar"], .orderFormHeaderLayoutExpanded .listGrid div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.orderFormHeaderLayoutCollapsed .listGrid [class *="headerButton"], .orderFormHeaderLayoutExpanded .listGrid [class *="headerButton"] {
+    border: 1px solid #fff !important;
+    border-right: 0px !important;
+    border-top: 0px !important;
+    text-align: center !important;
+}
+
+.orderFormHeaderLayoutCollapsed div[eventproxy*="DOOR_ORDER1_headerLayout"], .orderFormHeaderLayoutExpanded div[eventproxy*="DOOR_ORDER1_headerLayout"] {
+    width: 100% !important;
+}
+
+/* .orderFormHeaderLayoutCollapsed div[eventproxy*="isc_Toolbar_2"],.orderFormHeaderLayoutExpanded div[eventproxy*="isc_Toolbar_2"]{
+	width:1306px !important;
+} */
+.windowStyle {
+    border: 1px solid #00a0d0 !important;
+}
+
+.dotErrorStyle {
+    border: 1px solid #00a0d0 !important;
+}
+
+.dotErrorStyle div[role="label"] td {
+    white-space: pre-wrap !important;
+}
+
+.afterordFormLayout .orderFormHeaderLayoutCollapsed .listTable tr td.warningBackGround, .afterordFormLayout .orderFormHeaderLayoutExpanded .listTable tr td.warningBackGround, .afterordFormLayout .orderFormHeaderLayout .listTable tr td.warningBackGround {
+    background: orange !important;
+}
+
+.gridStyle .listTable tr td.warningBackGround {
+    background: orange !important;
+}
+
+
+.afterordFormLayout .orderFormHeaderLayoutCollapsed .listTable tr td.warningBackGroundYellow, .afterordFormLayout .orderFormHeaderLayoutExpanded .listTable tr td.warningBackGroundYellow, .afterordFormLayout .orderFormHeaderLayout .listTable tr td.warningBackGroundYellow {
+    background: #f7f777 !important;
+}
+
+.gridStyle .listTable tr td.warningBackGroundYellow {
+    background: #f7f777 !important;
+}
+
+.companySelectItemStyle .selectItemLiteControl, .companySelectItemStyle .selectItemLiteControlRTL, .companySelectItemStyle .selectItemLiteControlFocused, .companySelectItemStyle .selectItemLiteControlFocusedRTL, .companySelectItemStyle .selectItemLiteControlOver, .companySelectItemStyle .selectItemLiteControlOverRTL, .companySelectItemStyle .selectItemLiteControlFocusedOver, .companySelectItemStyle .selectItemLiteControlFocusedOverRTL, .companySelectItemStyle .selectItemLiteControlDisabled, .companySelectItemStyle .selectItemLiteControlDisabledRTL, .companySelectItemStyle .selectItemLiteControlError, .companySelectItemStyle .selectItemLiteControlErrorRTL, .companySelectItemStyle .selectItemLiteControlPending, .companySelectItemStyle .selectItemLiteControlPendingRTL, .companySelectItemStyle .selectItemLiteControlPendingFocused, .companySelectItemStyle .selectItemLiteControlPendingFocusedRTL, .companySelectItemStyle .selectItemLiteControlPendingOver, .companySelectItemStyle .selectItemLiteControlPendingOverRTL, .companySelectItemStyle .selectItemLiteControlPendingFocusedOver, .companySelectItemStyle .selectItemLiteControlPendingFocusedOverRTL, .companySelectItemStyle .selectItemLiteControlPendingDisabled, .companySelectItemStyle .selectItemLiteControlPendingDisabledRTL, .companySelectItemStyle .selectItemLiteControlPendingError, .companySelectItemStyle .selectItemLiteControlPendingErrorRTL, .companySelectItemStyle .selectItemLiteControlHint, .companySelectItemStyle .selectItemLiteControlHintRTL, .companySelectItemStyle .selectItemLiteControlDisabledHint, .companySelectItemStyle .selectItemLiteControlDisabledHintRTL {
+    border: 0px !important;
+    background: inherit !important;
+
+}
+
+.companySelectItemStyle div {
+    padding-left: 2px !important;
+    color: #282828 !important;
+    font-size: 14.5px !important;
+    font-family: OpenSans_regular !important;
+    font-weight: bold !important;
+}
+
+/* Copy Project POp Up CSS */
+.copyProjectStyle {
+    background: white !important;
+}
+
+.copyProjectforIE {
+    background: white !important;
+}
+
+.destinationProjectLayoutStyle {
+    border-top: 1px solid #e6e7e8 !important;
+    padding-left: 12px !important;
+}
+
+.sourceProjectLayoutStyle {
+    padding-left: 12px !important;
+}
+
+.copyProjectStyle div[eventproxy*="DynamicForm"] label {
+    font-size: 12.58px !important;
+}
+
+.copyProjectStyle .fontStyle label {
+    font-family: RobotoLight !important;
+}
+
+.copyProjectforIE div[eventproxy*="DynamicForm"] label {
+    font-size: 12.58px !important;
+}
+
+.copyProjectforIE .fontStyle label {
+    font-family: RobotoLight !important;
+}
+
+/* .copyProjectforIE table{
+	width:80% !important;
+}
+.copyProjectforIE td input{
+	width:75% !important;
+} */
+.warningNewProjectCreatedLabelStyle .staticTextItem {
+    color: #0c9eca !important;
+    font-weight: bold !important;
+    font-family: RobotoLight !important;
+    font-size: 12.58px !important;
+    padding-top: 3px !important;
+}
+
+.alertNewProjectCreatedLabelStyle{
+	color: #dd003d!important;
+    font-weight: bold !important;
+    font-family: RobotoLight !important;
+    font-size: 12.58px !important;
+    padding-top: 4px !important;
+}
+
+.LineNumberItemLabelStyle .staticTextItem {
+    font-size: 18px;
+    font-family: 'OpenSans_regular' !important;
+    text-align: left;
+    width: 800px;
+    color: black !important;
+}
+
+/* SelectTextureColorPopupView CSS */
+.messageStyle .headerItem {
+    color: #757575 !important;
+    font-family: 'OpenSans_light' !important;
+    font-size: 12px !important;
+    padding-top: 3px !important;
+}
+
+.popUp_selectTextureColorForm table {
+    width: 100% !important;
+}
+
+.sectionStackStyle, .orderFormTabSetStyle {
+    overflow: visible !important;
+}
+
+.testcss .rowHeaderStyle div div div,.orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayout div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div{
+-ms-writing-mode: tb-rl;
+     writing-mode: vertical-rl;
+   transform: rotate(180deg);
+    white-space: normal !important;
+    display: inline-flex !important;
+    text-align: center !important;
+    align-items: center !important
+}
+
+  .orderFormHeaderLayout .listGrid [class *="headerButton"] div{
+      width:100% !important;
+}
+
+
+.modalmask{
+background-color:white;
+  opacity:1 !important;
+}
+
+.loadMask {
+	border: 1px solid #ddd !important;
+	border-radius: 5px !important;
+}
+/* Dynamic Grid Footer */
+.generalNotesStyle input {
+    width: 95% !important;
+}
+
+.girdLogoLayoutStyle {
+    padding-bottom: 10px !important;
+}
+
+.gridFooterBottomLayoutStyle {
+    padding-top: 5px !important;
+    border-top: 1px solid #e6e7e8 !important;
+}
+
+.borderStyle {
+    border: 1px solid #e6e7e8 !important;
+    padding-left: 8px !important;
+}
+
+.curriesLogoRightLayoutStyle div[role="label"] td {
+    font-family: 'OpenSans_Semibold' !important;
+}
+
+.assaLogoStyle {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+}
+
+.curriesSloganStyle {
+    font-family: 'OpenSans_Regular' !important;
+}
+
+.toolTipStyle {
+    width: 700px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+}
+
+.quantityCellStyle img {
+    height: 9px !important;
+}
+
+.quantityCellStyle .spinnerItemDecrease, .quantityCellStyle .spinnerItemDecreaseDisabled, .quantityCellStyle .spinnerItemDecrease, .quantityCellStyle .spinnerItemDecreaseOver, .quantityCellStyle .spinnerItemDecreaseFocused, .quantityCellStyle .spinnerItemDecreaseFocusedOver {
+    background-position: 0px -6px !important;
+}
+
+.quantityCellStyle .spinnerItemIncrease, .quantityCellStyle .spinnerItemIncreaseDisabled, .quantityCellStyle .spinnerItemIncrease, .quantityCellStyle .spinnerItemIncreaseOver, .quantityCellStyle .spinnerItemIncreaseFocused, .quantityCellStyle .spinnerItemIncreaseFocusedOver {
+    background-position: 0px 14px !important;
+}
+
+.quantityCellStyle .listTable td {
+    padding: 0px !important;
+}
+
+.quantityCellStyle div {
+    max-height: 20px !important;
+}
+
+.spinnerCellStyle img {
+    height: 9px !important;
+}
+
+.spinnerCellStyle .spinnerItemDecrease, .spinnerCellStyle .spinnerItemDecreaseDisabled, .spinnerCellStyle .spinnerItemDecrease, .spinnerCellStyle .spinnerItemDecreaseOver, .spinnerCellStyle .spinnerItemDecreaseFocused, .spinnerCellStyle .spinnerItemDecreaseFocusedOver {
+    background-position: -4px -6px !important;
+}
+
+.spinnerCellStyle .spinnerItemIncrease, .spinnerCellStyle .spinnerItemIncreaseDisabled, .spinnerCellStyle .spinnerItemIncrease, .spinnerCellStyle .spinnerItemIncreaseOver, .spinnerCellStyle .spinnerItemIncreaseFocused, .spinnerCellStyle .spinnerItemIncreaseFocusedOver {
+    background-position: -4px 14px !important;
+}
+
+.spinnerCellStyle .listTable td {
+    padding: 0px !important;
+}
+
+.spinnerCellStyle div {
+    max-height: 20px !important;
+}
+
+.specialinfoTitleStyle {
+    padding-top: 8px !important;
+}
+.specialinfoTitleStyleForAasc{
+	padding-top: 5px !important;
+}
+.specialLocationTextStyle {
+    white-space: nowrap !important;
+}
+
+.homeOfficeUsesectionStyle {
+    margin-left: 7px !important;
+    margin-top: 5px !important;
+
+}
+
+.checkboxStyle span {
+    margin-left: -1px !important;
+}
+
+.expandIcon:after {
+    content: "\f077";
+    padding: 1px 6px !important;
+    outline: 1px solid #c3c4be;
+    margin-left: 20px;
+    font-size: 15px !important;
+
+}
+
+.gridStyle, .lockGridStyle {
+    border: 1px solid #cccccc;
+}
+
+.padded_vlayout .gridStyle .listTable tr .migrated {
+    color: #bdb5b5 !important;
+    /* background:#DCDAD1 !important;
+	border-color:#f4f4f4 !important; */
+}
+
+.validate-icon {
+    content: "\f046";
+}
+
+/* .expandCollapseButton  div,.expandCollapseButton  div i{
+	width:100%;
+} */
+.clearCSS {
+    display: none;
+    border-left: none !important;
+}
+
+.centerHeaderStyle{
+    padding-bottom: 18px !important;
+}
+
+.centerHeaderStyleSdi{
+    padding-bottom: 0px !important;
+}
+
+.collapseIcon:after {
+    content: "\f078";
+    padding: 1px 6px !important;
+    outline: 1px solid #c3c4be;
+    margin-left: 20px;
+    font-size: 15px !important;
+
+}
+
+.expandCollapseButton {
+    color: #555 !important;
+    font-family: OpenSans_Light !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+}
+
+.no-image img {
+    display: none !important;
+}
+
+.uploadFormStyle {
+    padding-left: 6px !important;
+}
+
+.homeOfficeUseButtonStyle {
+    left: auto !important;
+    right: 0px !important;
+}
+
+.groupTitleStyle {
+    white-space: nowrap !important;
+    padding-top: 5px !important;
+    padding-left: 10% !important;
+}
+
+.poNumberformStyle, .orderTypesformStyle, .additionalInfoformStyle {
+    border: 1px solid #b8b8b8 !important;
+    left: 4% !important;
+    padding-left: 5px !important;
+}
+
+.fa-user:before {
+    padding-right: 5px !important;
+}
+
+.brandStyle {
+    padding-top: 2px !important;
+}
+
+.formCSS {
+    margin: 10px 10px 0px 10px !important;
+}
+
+.searchCSS {
+    margin: 8px !important;
+}
+
+.textItemLite, .textItemLiteRTL, .textItemLiteFocused, .textItemLiteFocusedRTL, .textItemLiteDisabled, .textItemLiteDisabledRTL, .textItemLiteError, .textItemLiteErrorRTL, .textItemLitePending, .textItemLitePendingRTL, .textItemLitePendingFocused, .textItemLitePendingFocusedRTL, .textItemLitePendingDisabled, .textItemLitePendingDisabledRTL, .textItemLitePendingError, .textItemLitePendingErrorRTL, .textItemLiteHint, .textItemLiteHintRTL, .textItemLiteDisabledHint, .textItemLiteDisabledHintRTL, .selectItemLiteControl, .selectItemLiteControlRTL, .selectItemLiteControlFocused, .selectItemLiteControlFocusedRTL, .selectItemLiteControlOver, .selectItemLiteControlOverRTL, .selectItemLiteControlFocusedOver, .selectItemLiteControlFocusedOverRTL, .selectItemLiteControlDisabled, .selectItemLiteControlDisabledRTL, .selectItemLiteControlError, .selectItemLiteControlErrorRTL, .selectItemLiteControlPending, .selectItemLiteControlPendingRTL, .selectItemLiteControlPendingFocused, .selectItemLiteControlPendingFocusedRTL, .selectItemLiteControlPendingOver, .selectItemLiteControlPendingOverRTL, .selectItemLiteControlPendingFocusedOver, .selectItemLiteControlPendingFocusedOverRTL, .selectItemLiteControlPendingDisabled, .selectItemLiteControlPendingDisabledRTL, .selectItemLiteControlPendingError, .selectItemLiteControlPendingErrorRTL, .selectItemLiteControlHint, .selectItemLiteControlHintRTL, .selectItemLiteControlDisabledHint, .selectItemLiteControlDisabledHintRTL, .spinnerItemLiteControl, .spinnerItemLiteControlRTL, .spinnerItemLiteControlFocused, .spinnerItemLiteControlFocusedRTL, .spinnerItemLiteControlOver, .spinnerItemLiteControlOverRTL, .spinnerItemLiteControlFocusedOver, .spinnerItemLiteControlFocusedOverRTL, .spinnerItemLiteControlDisabled, .spinnerItemLiteControlDisabledRTL, .spinnerItemLiteControlError, .spinnerItemLiteControlErrorRTL, .spinnerItemLiteControlPending, .spinnerItemLiteControlPendingRTL, .spinnerItemLiteControlPendingFocused, .spinnerItemLiteControlPendingFocusedRTL, .spinnerItemLiteControlPendingOver, .spinnerItemLiteControlPendingOverRTL, .spinnerItemLiteControlPendingFocusedOver, .spinnerItemLiteControlPendingFocusedOverRTL, .spinnerItemLiteControlPendingDisabled, .spinnerItemLiteControlPendingDisabledRTL, .spinnerItemLiteControlPendingError, .spinnerItemLiteControlPendingErrorRTL, .spinnerItemLiteControlHint, .spinnerItemLiteControlHintRTL, .spinnerItemLiteControlDisabledHint, .spinnerItemLiteControlDisabledHintRTL, .textAreaItemLite, .textAreaItemLiteRTL, .textAreaItemLiteFocused, .textAreaItemLiteFocusedRTL, .textAreaItemLiteDisabled, .textAreaItemLiteDisabledRTL, .textAreaItemLiteError, .textAreaItemLiteErrorRTL, .textAreaItemLitePending, .textAreaItemLitePendingRTL, .textAreaItemLitePendingFocused, .textAreaItemLitePendingFocusedRTL, .textAreaItemLitePendingDisabled, .textAreaItemLitePendingDisabledRTL, .textAreaItemLitePendingError, .textAreaItemLitePendingErrorRTL, .textAreaItemLiteHint, .textAreaItemLiteHintRTL, .textAreaItemLiteDisabledHint, .textAreaItemLiteDisabledHintRTL {
+    border-radius: 2px !important;
+}
+
+.pricingLayoutStyle {
+    padding-top: 4px !important;
+}
+ .orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div,.orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div{
+   -ms-writing-mode: tb-rl;
+     writing-mode: vertical-rl;
+   transform: rotate(180deg);
+    white-space: normal !important;
+    display: inline-flex !important;
+    text-align: center !important;
+    align-items: center !important
+}
+
+.uploadFormStyle {
+    padding-top: 5px !important;
+}
+
+.transInstallStyle {
+    margin-left: -1px !important;
+}
+
+
+.lockfield input, .hdwprepfield input {
+    padding-left: 0px !important;
+    text-align: center !important;
+}
+
+ 
+.lockGridStyle .listTable tr .lockfield, .gridStyle .listTable tr .hdwprepfield {
+    padding-left: 0px !important;
+    color: #757575 !important;
+}
+
+.lockfield, .hdwprepfield {
+    padding: 0px !important;
+    padding-left: 0px !important;
+    text-align: center !important;
+}
+
+.warningStyle {
+    color: red !important;
+    white-space: nowrap !important;
+}
+
+.dotformStyle {
+    padding-top: 4px !important;
+}
+
+.checkStyle span {
+    margin-left: -1px !important;
+}
+
+.textItemLitePending, .textItemLitePendingRTL, .textItemLitePendingFocused, .textItemLitePendingFocusedRTL, .textItemLitePendingError, .textItemLitePendingErrorRTL, .selectItemLiteTextPending, .selectItemLiteTextPendingRTL, .selectItemLiteTextPendingFocused, .selectItemLiteTextPendingFocusedRTL, .selectItemLiteTextPendingError, .selectItemLiteTextPendingErrorRTL, .textAreaItemLitePending, .textAreaItemLitePendingRTL, .textAreaItemLitePendingFocused, .textAreaItemLitePendingFocusedRTL, .textAreaItemLitePendingError, .textAreaItemLitePendingErrorRTL {
+    color: #282828 !important;
+}
+
+.company_info_email_address_modal_body .popUp_addform label {
+    color: #757575 !important;
+    font-family: 'OpenSans_Semibold' !important
+}
+
+.emailGrid .listGrid {
+    border: 1px solid #cccccc !important;
+}
+
+.confirmationMessageStyle {
+    font-size: 14px !important;
+}
+
+div[role="alertdialog"] {
+
+    border: 1px solid rgb(221, 221, 221) !important;
+}
+
+.pro_detail_layout .listGrid div[eventproxy*="Toolbar"] {
+    background: #00a0d0 !important;
+}
+
+.hideCSS {
+    display: none !important;
+}
+
+.centre-float {
+    left: 39% !important;
+}
+
+.btn-centre-float {
+    left: 37% !important;
+}
+
+.ok-center {
+    left: 41% !important;
+}
+
+.topSpace .help-heading {
+    color: #666666 !important;
+    font-family: 'OpenSans_SemiBold' !important;
+    font-size: 14px !important;
+}
+
+.labelStyle {
+    padding-left: 30px !important;
+    font-size: 14px !important;
+    font-family: 'OpenSans_Regular' !important;
+    color: #666666 !important;
+    padding-bottom: 15px !important;
+}
+
+.labelStyle ul {
+    margin: 0px !important;
+}
+
+.qtylabelStyle {
+    padding-left: 50px !important;
+    font-size: 14px !important;
+    font-family: 'OpenSans_Regular' !important;
+    color: black !important;
+    padding-bottom: 9px !important;
+}
+
+.topSpace {
+    padding-top: 10px !important;
+    padding-left: 3% !important;
+}
+
+.fa-info-circle:before {
+    font-size: 16px !important;
+    padding-right: 4px !important;
+}
+
+.helpPopUp .windowHeader div[role="label"] table td {
+    font-size: 16px !important;
+}
+
+.comapnyTooltipStyle {
+    min-width: 140px !important;
+    white-space: pre-wrap !important;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+.textItemLite, .textItemLiteRTL, .textItemLiteFocused, .textItemLiteFocusedRTL, .textItemLiteDisabled, .textItemLiteDisabledRTL, .textItemLiteError, .textItemLiteErrorRTL, .textItemLitePending, .textItemLitePendingRTL, .textItemLitePendingFocused, .textItemLitePendingFocusedRTL, .textItemLitePendingDisabled, .textItemLitePendingDisabledRTL, .textItemLitePendingError, .textItemLitePendingErrorRTL, .textItemLiteHint, .textItemLiteHintRTL, .textItemLiteDisabledHint, .textItemLiteDisabledHintRTL, .selectItemLiteText, .selectItemLiteTextRTL, .selectItemLiteTextFocused, .selectItemLiteTextFocusedRTL, .selectItemLiteTextDisabled, .selectItemLiteTextDisabledRTL, .selectItemLiteTextError, .selectItemLiteTextErrorRTL, .selectItemLiteTextPending, .selectItemLiteTextPendingRTL, .selectItemLiteTextPendingFocused, .selectItemLiteTextPendingFocusedRTL, .selectItemLiteTextPendingDisabled, .selectItemLiteTextPendingDisabledRTL, .selectItemLiteTextPendingError, .selectItemLiteTextPendingErrorRTL, .selectItemLiteTextHint, .selectItemLiteTextHintRTL, .selectItemLiteTextDisabledHint, .selectItemLiteTextDisabledHintRTL, .spinnerItemLiteText, .spinnerItemLiteTextRTL, .spinnerItemLiteTextFocused, .spinnerItemLiteTextFocusedRTL, .spinnerItemLiteTextDisabled, .spinnerItemLiteTextDisabledRTL, .spinnerItemLiteTextError, .spinnerItemLiteTextErrorRTL, .spinnerItemLiteTextPending, .spinnerItemLiteTextPendingRTL, .spinnerItemLiteTextPendingFocused, .spinnerItemLiteTextPendingFocusedRTL, .spinnerItemLiteTextPendingDisabled, .spinnerItemLiteTextPendingDisabledRTL, .spinnerItemLiteTextPendingError, .spinnerItemLiteTextPendingErrorRTL, .spinnerItemLiteTextHint, .spinnerItemLiteTextHintRTL, .spinnerItemLiteTextDisabledHint, .spinnerItemLiteTextDisabledHintRTL, .textAreaItemLite, .textAreaItemLiteRTL, .textAreaItemLiteFocused, .textAreaItemLiteFocusedRTL, .textAreaItemLiteDisabled, .textAreaItemLiteDisabledRTL, .textAreaItemLiteError, .textAreaItemLiteErrorRTL, .textAreaItemLitePending, .textAreaItemLitePendingRTL, .textAreaItemLitePendingFocused, .textAreaItemLitePendingFocusedRTL, .textAreaItemLitePendingDisabled, .textAreaItemLitePendingDisabledRTL, .textAreaItemLitePendingError, .textAreaItemLitePendingErrorRTL, .textAreaItemLiteHint, .textAreaItemLiteHintRTL, .textAreaItemLiteDisabledHint, .textAreaItemLiteDisabledHintRTL {
+    font-family: 'OpenSans_regular' !important;
+    color: black !important;
+}
+
+.labelAnchor, .labelAnchorRTL, .labelAnchorFocused, .labelAnchorFocusedRTL, .labelAnchorDisabled, .labelAnchorDisabledRTL, .labelAnchorError, .labelAnchorErrorRTL, .labelAnchorPending, .labelAnchorPendingRTL, .labelAnchorPendingFocused, .labelAnchorPendingFocusedRTL, .labelAnchorPendingDisabled, .labelAnchorPendingDisabledRTL, .labelAnchorPendingError, .labelAnchorPendingErrorRTL {
+    font-family: 'OpenSans_regular' !important;
+    color: black !important;
+}
+
+.windowBody div[eventproxy*="DynamicForm"] label {
+    color: black !important;
+    font-family: 'OpenSans_regular' !important;
+    font-weight: 400 !important;
+}
+
+.uploadItem, .uploadItemRTL, .uploadItemFocused, .uploadItemFocusedRTL, .uploadItemDisabled, .uploadItemDisabledRTL, .uploadItemError, .uploadItemErrorRTL, .uploadItemPending, .uploadItemPendingRTL, .uploadItemPendingFocused, .uploadItemPendingFocusedRTL, .uploadItemPendingDisabled, .uploadItemPendingDisabledRTL, .uploadItemPendingError, .uploadItemPendingErrorRTL, .uploadItemHint, .uploadItemHintRTL, .uploadItemDisabledHint, .uploadItemDisabledHintRTL {
+    font-family: 'OpenSans_regular' !important;
+}
+
+.hideTabStyle div[eventproxy *="navigation_migration_tab"] {
+    display: none !important;
+}
+
+.errBtn {
+    margin-top: 10px !important;
+}
+
+.aboutStyle td.headingStyle {
+    color: #4d4d4d !important;
+    font-family: RobotoLight !important;
+    font-weight: bold;
+    font-size: 14px !important;
+}
+
+.aboutStyle td.informationStyle {
+    font-family: 'OpenSans_regular' !important;
+    font-size: 12px !important;
+    color: black !important;
+    padding-left: 10px !important;
+    white-space: pre-wrap !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.layoutStyle {
+    margin-top: 5px !important;
+}
+
+.tablayoutStyle {
+    width: 100% !important;
+}
+
+.locationLayoutStyle .labelAnchor {
+    padding-left: 5px !important;
+}
+
+.defaultBaseStyle {
+    white-space: nowrap !important;
+    right: 10px !important;
+}
+
+.lablLayoutStyle div[role="label"] {
+    right: 10px !important;
+    left: auto !important;
+}
+
+.single-select-option-question:before,
+.single-select-option-question.Over:before {
+    content: "\f10c";
+    background: transparent;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    top: 2px;
+    border: none;
+    font-family: 'FontAwesome';
+    font-size: 20px;
+    position: absolute;
+    color: #666666;
+}
+
+
+.single-select-option-question.Selected:before,
+.single-select-option-question.SelectedOver:before,
+.single-select-option-question.SelectedFocused:before,
+.single-select-option-question.SelectedFocusedOver:before,
+.single-select-option-question.SelectedFocusedDown:before,
+.single-select-option-question.SelectedFocusedOver:before
+{
+    content: "\f192";
+    background: transparent;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    top: 2px;
+    border: none;
+    font-family: 'FontAwesome';
+    font-size: 20px;
+    position: absolute;
+    color: #000000;
+}
+
+.single-select-option-question.Selected div,
+.single-select-option-question.SelectedOver div,
+.single-select-option-question.SelectedFocused div
+{
+    font-weight: bold;
+}
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+    .soldToHlayout div[role="button"] {
+        left: auto !important;
+        right: 31px;
+        /* top: 10px !important; */
+    }
+
+    .dosBodylayout {
+        /* 	margin-top: -10px; */
+        border-top: 3px solid rgb(227, 228, 230) !important;
+        border-bottom: 3px solid rgb(227, 228, 230) !important;
+    }
+
+.orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayout div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div,.orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div{
+        -ms-writing-mode: tb-rl;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: normal !important;
+        display: inline-flex !important;
+        text-align: center !important;
+        align-items: center !important
+ }
+
+    .orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div {
+        -ms-writing-mode: tb-rl;
+        transform: rotate(180deg);
+        white-space: normal !important;
+        display: inline-flex !important;
+        text-align: center !important;
+    }
+
+    .gridFooterBottomLayoutStyle {
+        padding-top: 12px !important;
+        border-top: 1px solid #e6e7e8 !important;
+    }
+
+    .page_heading_Info {
+        font-size: 18px;
+        color: #000;
+        font-family: 'Verdana';
+    }
+
+    .warningNewProjectCreatedLabelStyle .staticTextItem {
+        color: #0c9eca !important;
+        font-weight: bold !important;
+        font-family: RobotoLight !important;
+        font-size: 12.58px !important;
+        padding-top: 6px !important;
+    }
+
+
+    .btn-icon-cancel {
+        border-radius: 5px;
+        font-weight: bold;
+        text-transform: capitalize;
+        font-size: 12px !important;
+        font-family: 'OpenSans_Semibold' !important;
+        padding: 6px 12px !important;
+        border: 1px solid #c3c4be;
+        background: #fff;
+        color: #666;
+        top: 0px !important;
+    }
+
+    .dropDownForIE input {
+        padding-bottom: 5px !important;
+        /* padding-top:2px !important; */
+    }
+
+    .paddingForIE .textItemLite, .paddingForIE .textItemLiteRTL, .paddingForIE .textItemLiteFocused, .paddingForIE .textItemLiteFocusedRTL, .paddingForIE .textItemLiteDisabled, .paddingForIE .textItemLiteDisabledRTL, .paddingForIE .textItemLiteError, .paddingForIE .textItemLiteErrorRTL, .paddingForIE .textItemLitePending, .paddingForIE .textItemLitePendingRTL, .paddingForIE .textItemLitePendingFocused, .paddingForIE .textItemLitePendingFocusedRTL, .paddingForIE .textItemLitePendingDisabled, .paddingForIE .textItemLitePendingDisabledRTL, .paddingForIE .textItemLitePendingError, .paddingForIE .textItemLitePendingErrorRTL, .paddingForIE .textItemLiteHint, .paddingForIE .textItemLiteHintRTL, .paddingForIE .textItemLiteDisabledHint, .paddingForIE .textItemLiteDisabledHintRTL, .paddingForIE .selectItemLiteControl, .paddingForIE .selectItemLiteControlRTL, .paddingForIE .selectItemLiteControlFocused, .paddingForIE .selectItemLiteControlFocusedRTL, .paddingForIE .selectItemLiteControlOver, .paddingForIE .selectItemLiteControlOverRTL, .paddingForIE .selectItemLiteControlFocusedOver, .paddingForIE .selectItemLiteControlFocusedOverRTL, .paddingForIE .selectItemLiteControlDisabled, .paddingForIE .selectItemLiteControlDisabledRTL, .paddingForIE .selectItemLiteControlError, .paddingForIE .selectItemLiteControlErrorRTL, .paddingForIE .selectItemLiteControlPending, .paddingForIE .selectItemLiteControlPendingRTL, .paddingForIE .selectItemLiteControlPendingFocused, .paddingForIE .selectItemLiteControlPendingFocusedRTL, .paddingForIE .selectItemLiteControlPendingOver, .paddingForIE .selectItemLiteControlPendingOverRTL, .paddingForIE .selectItemLiteControlPendingFocusedOver, .paddingForIE .selectItemLiteControlPendingFocusedOverRTL, .paddingForIE .selectItemLiteControlPendingDisabled, .paddingForIE .selectItemLiteControlPendingDisabledRTL, .paddingForIE .selectItemLiteControlPendingError, .paddingForIE .selectItemLiteControlPendingErrorRTL, .paddingForIE .selectItemLiteControlHint, .paddingForIE .selectItemLiteControlHintRTL, .paddingForIE .selectItemLiteControlDisabledHint, .paddingForIE .selectItemLiteControlDisabledHintRTL, .paddingForIE .textAreaItemLite, .paddingForIE .textAreaItemLiteRTL, .paddingForIE .textAreaItemLiteFocused, .paddingForIE .textAreaItemLiteFocusedRTL, .paddingForIE .textAreaItemLiteDisabled, .paddingForIE .textAreaItemLiteDisabledRTL, .paddingForIE .textAreaItemLiteError, .paddingForIE .textAreaItemLiteErrorRTL, .paddingForIE .textAreaItemLitePending, .paddingForIE .textAreaItemLitePendingRTL, .paddingForIE .textAreaItemLitePendingFocused, .paddingForIE .textAreaItemLitePendingFocusedRTL, .paddingForIE .textAreaItemLitePendingDisabled, .paddingForIE .textAreaItemLitePendingDisabledRTL, .paddingForIE .textAreaItemLitePendingError, .paddingForIE .textAreaItemLitePendingErrorRTL, .paddingForIE .textAreaItemLiteHint, .paddingForIE .textAreaItemLiteHintRTL, .paddingForIE .textAreaItemLiteDisabledHint, .paddingForIE .textAreaItemLiteDisabledHintRTL {
+        padding-bottom: 6px !important;
+        padding-top: 2px !important;
+    }
+
+    .poNumberformStyle, .orderTypesformStyle, .additionalInfoformStyle {
+        border: 1px solid #b8b8b8 !important;
+        left: 7% !important;
+        padding-left: 10px !important;
+    }
+
+    .search_btn_dot > div:before, .search_btn_dotOver > div:before,
+    .search_btn_dotDown > div:before, .search_btn_dotFocusedDown > div:before,
+    .search_btn_dotFocusedOver > div:before, .search_btn_dotFocused > div:before {
+        left: 18px;
+    }
+
+    .formCSS {
+        margin: 10px 10px 0px 10px !important;
+    }
+
+    td.tabButtonTopSelected, td.tabButtonTopSelectedOver, .td.tabButtonTopSelectedDown,
+    .td.tabButtonTopSelectedFocused, .td.tabButtonTopSelectedFocusedOver,
+    td.tabButtonTopDown, td.tabButtonTopSelectedFocused, td.tabButtonTopSelectedFocusedOver,
+    td.tabButtonTopSelectedFocusedDown, td.tabButtonTopSelectedOver, td.tabButtonTopSelectedDown,
+    td.tabButtonTopSelected, td.tabButtonTopFocusedDown, td.tabButtonTopSelectedFocusedDown,
+    td.tabButtonTopDown, td.tabButtonTopSelectedDown {
+        background: #00a0d0 !important;
+        color: white !important;
+        border: 1px solid #ddd !important;
+        font-size: 15px !important;
+        box-shadow: none !important;
+        /* border-bottom: none !important; */
+        border-radius: 3px !important;
+        font-family: 'OpenSans_regular' !important;
+        font-weight: 600 !important;
+    }
+
+    .expandIcon:after {
+        content: "\f077";
+        padding: 1px 6px !important;
+        outline: 1px solid #c3c4be;
+        margin-left: 20px;
+        font-size: 15px !important;
+
+    }
+
+    .collapseIcon:after {
+        content: "\f078";
+        padding: 1px 6px !important;
+        outline: 1px solid #c3c4be;
+        margin-left: 20px;
+        font-size: 15px !important;
+
+    }
+
+    .orderFormHeaderLayoutCollapsed {
+        top: 55px !important;
+    }
+
+    .groupTitleStyle {
+        white-space: nowrap !important;
+        padding-top: 5px !important;
+        padding-left: 19% !important;
+    }
+
+    .textItemLitePending, .textItemLitePendingRTL, .textItemLitePendingFocused, .textItemLitePendingFocusedRTL, .textItemLitePendingError, .textItemLitePendingErrorRTL, .selectItemLiteTextPending, .selectItemLiteTextPendingRTL, .selectItemLiteTextPendingFocused, .selectItemLiteTextPendingFocusedRTL, .selectItemLiteTextPendingError, .selectItemLiteTextPendingErrorRTL, .textAreaItemLitePending, .textAreaItemLitePendingRTL, .textAreaItemLitePendingFocused, .textAreaItemLitePendingFocusedRTL, .textAreaItemLitePendingError, .textAreaItemLitePendingErrorRTL {
+        color: #282828 !important;
+    }
+
+    .helpPopUp .topSpace {
+        padding-top: 10px !important;
+        padding-left: 6% !important;
+        left: 8% !important;
+    }
+
+    .centre-float {
+        left: 38% !important;
+    }
+
+    .btn-centre-float {
+        left: 38% !important;
+    }
+
+    .btn-float {
+        left: 44% !important;
+    }
+
+    .pickListMenu .pickListMenuBody .listTable tr td {
+        white-space: pre-wrap !important;
+    }
+
+    .layoutStyle td {
+        font-size: 12px !important;
+    }
+
+    .locationLayoutStyle .labelAnchor {
+        padding-left: 5px !important;
+    }
+}
+
+/* Edge */
+@supports (-ms-ime-align: auto) {
+    .contactInfoHlayout input, .contactInfoHlayout textarea {
+        width: 85% !important;
+    }
+
+    .soldToHlayout div[role="button"] {
+        left: auto !important;
+        right: 35px;
+        /* top: 10px !important; */
+    }
+
+    /* .officeUseHLayout div[role="button"], .officeUseBottomHLayout div[role="button"]{
+	margin-left:0px !important;
+} */
+    .shipToHlayout .shipToZipEdge {
+        width: 150px !important;
+    }
+
+    .orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div {
+        -ms-writing-mode: tb-rl;
+        transform: rotate(180deg);
+        white-space: normal !important;
+        display: inline-flex !important;
+        text-align: center !important;
+    }
+
+    .orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div {
+        -ms-writing-mode: tb-rl;
+        transform: rotate(180deg);
+        white-space: normal !important;
+        display: inline-flex !important;
+        text-align: center !important;
+    }
+
+    .page_heading_Info {
+        font-size: 18px;
+        color: #000;
+        font-family: 'Verdana';
+    }
+
+    .btn-icon-cancel {
+        border-radius: 5px;
+        font-weight: bold;
+        text-transform: capitalize;
+        font-size: 12px !important;
+        font-family: 'OpenSans_Semibold' !important;
+        padding: 6px 12px !important;
+        border: 1px solid #c3c4be;
+        background: #fff;
+        color: #666;
+        top: 0px !important;
+    }
+
+    .mandatory .textItemLite, .mandatory .textItemLiteRTL, .mandatory .textItemLiteFocused, .mandatory .textItemLiteFocusedRTL, .mandatory .textItemLiteDisabled, .mandatory .textItemLiteDisabledRTL, .mandatory .textItemLiteError, .mandatory .textItemLiteErrorRTL, .mandatory .textItemLitePending, .mandatory .textItemLitePendingRTL, .mandatory .textItemLitePendingFocused, .mandatory .textItemLitePendingFocusedRTL, .mandatory .textItemLitePendingDisabled, .mandatory .textItemLitePendingDisabledRTL, .mandatory .textItemLitePendingError, .mandatory .textItemLitePendingErrorRTL, .mandatory .textItemLiteHint, .mandatory .textItemLiteHintRTL, .mandatory .textItemLiteDisabledHint, .mandatory .textItemLiteDisabledHintRTL, .mandatory .textAreaItemLite, .mandatory .textAreaItemLiteRTL, .mandatory .textAreaItemLiteFocused, .mandatory .textAreaItemLiteFocusedRTL, .mandatory .textAreaItemLiteDisabled, .mandatory .textAreaItemLiteDisabledRTL, .mandatory .textAreaItemLiteError, .mandatory .textAreaItemLiteErrorRTL, .mandatory .textAreaItemLitePending, .mandatory .textAreaItemLitePendingRTL, .mandatory .textAreaItemLitePendingFocused, .mandatory .textAreaItemLitePendingFocusedRTL, .mandatory .textAreaItemLitePendingDisabled, .mandatory .textAreaItemLitePendingDisabledRTL, .mandatory .textAreaItemLitePendingError, .mandatory .textAreaItemLitePendingErrorRTL, .mandatory .textAreaItemLiteHint, .mandatory .textAreaItemLiteHintRTL, .mandatory .textAreaItemLiteDisabledHint, .mandatory .textAreaItemLiteDisabledHintRTL {
+        background: #f7f777 !important;
+        padding: 4px 9px 4px 9px !important;
+    }
+
+    .mandatory .selectItemLiteControl, .mandatory .selectItemLiteControlRTL, .mandatory .selectItemLiteControlFocused, .mandatory .selectItemLiteControlFocusedRTL, .mandatory .selectItemLiteControlOver, .mandatory .selectItemLiteControlOverRTL, .mandatory .selectItemLiteControlFocusedOver, .mandatory .selectItemLiteControlFocusedOverRTL, .mandatory .selectItemLiteControlDisabled, .mandatory .selectItemLiteControlDisabledRTL, .mandatory .selectItemLiteControlError, .mandatory .selectItemLiteControlErrorRTL, .mandatory .selectItemLiteControlPending, .mandatory .selectItemLiteControlPendingRTL, .mandatory .selectItemLiteControlPendingFocused, .mandatory .selectItemLiteControlPendingFocusedRTL, .mandatory .selectItemLiteControlPendingOver, .mandatory .selectItemLiteControlPendingOverRTL, .mandatory .selectItemLiteControlPendingFocusedOver, .mandatory .selectItemLiteControlPendingFocusedOverRTL, .mandatory .selectItemLiteControlPendingDisabled, .mandatory .selectItemLiteControlPendingDisabledRTL, .mandatory .selectItemLiteControlPendingError, .mandatory .selectItemLiteControlPendingErrorRTL, .mandatory .selectItemLiteControlHint, .mandatory .selectItemLiteControlHintRTL, .mandatory .selectItemLiteControlDisabledHint, .mandatory .selectItemLiteControlDisabledHintRTL {
+        background: #f7f777 !important;
+        padding-top: 1px !important;
+    }
+
+    .dropDownForIE input {
+        padding-bottom: 4px !important;
+        padding-top: 4px !important;
+    }
+    
+    .carrierStyle {
+    height: 13px important;
+}
+
+    .paddingForEdge input {
+        padding-bottom: 2px !important;
+        padding-top: 2px !important;
+    }
+
+    .paddingForIE .textItemLite, .paddingForIE .textItemLiteRTL, .paddingForIE .textItemLiteFocused, .paddingForIE .textItemLiteFocusedRTL, .paddingForIE .textItemLiteDisabled, .paddingForIE .textItemLiteDisabledRTL, .paddingForIE .textItemLiteError, .paddingForIE .textItemLiteErrorRTL, .paddingForIE .textItemLitePending, .paddingForIE .textItemLitePendingRTL, .paddingForIE .textItemLitePendingFocused, .paddingForIE .textItemLitePendingFocusedRTL, .paddingForIE .textItemLitePendingDisabled, .paddingForIE .textItemLitePendingDisabledRTL, .paddingForIE .textItemLitePendingError, .paddingForIE .textItemLitePendingErrorRTL, .paddingForIE .textItemLiteHint, .paddingForIE .textItemLiteHintRTL, .paddingForIE .textItemLiteDisabledHint, .paddingForIE .textItemLiteDisabledHintRTL, .paddingForIE .selectItemLiteControl, .paddingForIE .selectItemLiteControlRTL, .paddingForIE .selectItemLiteControlFocused, .paddingForIE .selectItemLiteControlFocusedRTL, .paddingForIE .selectItemLiteControlOver, .paddingForIE .selectItemLiteControlOverRTL, .paddingForIE .selectItemLiteControlFocusedOver, .paddingForIE .selectItemLiteControlFocusedOverRTL, .paddingForIE .selectItemLiteControlDisabled, .paddingForIE .selectItemLiteControlDisabledRTL, .paddingForIE .selectItemLiteControlError, .paddingForIE .selectItemLiteControlErrorRTL, .paddingForIE .selectItemLiteControlPending, .paddingForIE .selectItemLiteControlPendingRTL, .paddingForIE .selectItemLiteControlPendingFocused, .paddingForIE .selectItemLiteControlPendingFocusedRTL, .paddingForIE .selectItemLiteControlPendingOver, .paddingForIE .selectItemLiteControlPendingOverRTL, .paddingForIE .selectItemLiteControlPendingFocusedOver, .paddingForIE .selectItemLiteControlPendingFocusedOverRTL, .paddingForIE .selectItemLiteControlPendingDisabled, .paddingForIE .selectItemLiteControlPendingDisabledRTL, .paddingForIE .selectItemLiteControlPendingError, .paddingForIE .selectItemLiteControlPendingErrorRTL, .paddingForIE .selectItemLiteControlHint, .paddingForIE .selectItemLiteControlHintRTL, .paddingForIE .selectItemLiteControlDisabledHint, .paddingForIE .selectItemLiteControlDisabledHintRTL, .paddingForIE .textAreaItemLite, .paddingForIE .textAreaItemLiteRTL, .paddingForIE .textAreaItemLiteFocused, .paddingForIE .textAreaItemLiteFocusedRTL, .paddingForIE .textAreaItemLiteDisabled, .paddingForIE .textAreaItemLiteDisabledRTL, .paddingForIE .textAreaItemLiteError, .paddingForIE .textAreaItemLiteErrorRTL, .paddingForIE .textAreaItemLitePending, .paddingForIE .textAreaItemLitePendingRTL, .paddingForIE .textAreaItemLitePendingFocused, .paddingForIE .textAreaItemLitePendingFocusedRTL, .paddingForIE .textAreaItemLitePendingDisabled, .paddingForIE .textAreaItemLitePendingDisabledRTL, .paddingForIE .textAreaItemLitePendingError, .paddingForIE .textAreaItemLitePendingErrorRTL, .paddingForIE .textAreaItemLiteHint, .paddingForIE .textAreaItemLiteHintRTL, .paddingForIE .textAreaItemLiteDisabledHint, .paddingForIE .textAreaItemLiteDisabledHintRTL {
+        padding-bottom: 4px !important;
+        padding-top: 4px !important;
+    }
+
+    .disabledFeild .textItemLite, .disabledFeild .textItemLiteRTL, .disabledFeild .textItemLiteFocused, .disabledFeild .textItemLiteFocusedRTL, .disabledFeild .textItemLiteDisabled, .disabledFeild .textItemLiteDisabledRTL, .disabledFeild .textItemLiteError, .disabledFeild .textItemLiteErrorRTL, .disabledFeild .textItemLitePending, .disabledFeild .textItemLitePendingRTL, .disabledFeild .textItemLitePendingFocused, .disabledFeild .textItemLitePendingFocusedRTL, .disabledFeild .textItemLitePendingDisabled, .disabledFeild .textItemLitePendingDisabledRTL, .disabledFeild .textItemLitePendingError, .disabledFeild .textItemLitePendingErrorRTL, .disabledFeild .textItemLiteHint, .disabledFeild .textItemLiteHintRTL, .disabledFeild .textItemLiteDisabledHint, .disabledFeild .textItemLiteDisabledHintRTL {
+        background: #f4f4f4 !important;
+        padding: 4px 9px 4px 9px !important;
+
+    }
+     
+    td.tabButtonTopSelected, td.tabButtonTopSelectedOver, .td.tabButtonTopSelectedDown,
+    .td.tabButtonTopSelectedFocused, .td.tabButtonTopSelectedFocusedOver,
+    td.tabButtonTopDown, td.tabButtonTopSelectedFocused, td.tabButtonTopSelectedFocusedOver,
+    td.tabButtonTopSelectedFocusedDown, td.tabButtonTopSelectedOver, td.tabButtonTopSelectedDown,
+    td.tabButtonTopSelected, td.tabButtonTopFocusedDown, td.tabButtonTopSelectedFocusedDown,
+    td.tabButtonTopDown, td.tabButtonTopSelectedDown {
+        background: #00a0d0 !important;
+        color: white !important;
+        border: 1px solid #ddd !important;
+        font-size: 15px !important;
+        box-shadow: none !important;
+        /* border-bottom: none !important; */
+        border-radius: 3px !important;
+        font-family: 'OpenSans_regular' !important;
+        font-weight: 600 !important;
+    }
+
+    .expandIcon:after {
+        content: "\f077";
+        padding: 1px 6px !important;
+        outline: 1px solid #c3c4be;
+        margin-left: 20px;
+        font-size: 15px !important;
+
+    }
+
+    .collapseIcon:after {
+        content: "\f078";
+        padding: 1px 6px !important;
+        outline: 1px solid #c3c4be;
+        margin-left: 20px;
+        font-size: 15px !important;
+
+    }
+
+    .soldToHlayout div[role="button"] {
+        left: auto !important;
+        right: 20px;
+        /* top: 10px !important; */
+    }
+
+    .textItemLitePending, .textItemLitePendingRTL, .textItemLitePendingFocused, .textItemLitePendingFocusedRTL, .textItemLitePendingError, .textItemLitePendingErrorRTL, .selectItemLiteTextPending, .selectItemLiteTextPendingRTL, .selectItemLiteTextPendingFocused, .selectItemLiteTextPendingFocusedRTL, .selectItemLiteTextPendingError, .selectItemLiteTextPendingErrorRTL, .textAreaItemLitePending, .textAreaItemLitePendingRTL, .textAreaItemLitePendingFocused, .textAreaItemLitePendingFocusedRTL, .textAreaItemLitePendingError, .textAreaItemLitePendingErrorRTL {
+        color: #282828 !important;
+    }
+
+    .topSpace {
+        padding-top: 10px !important;
+        padding-left: 6% !important;
+    }
+
+    .centre-float {
+        left: 37% !important;
+    }
+
+    .btn-centre-float {
+        left: 37% !important;
+    }
+
+    .btn-float {
+        left: 44% !important;
+    }
+}
+
+
+.listTable tr:nth-child(even) td.dateChooserWeekdaySelected{
+	background:#b6e3ff !important;
+}
+.listTable tr:nth-child(odd) td.dateChooserWeekdaySelected{
+	background:#b6e3ff !important;
+}
+
+/* Chrome 29+ */
+@media screen and (-webkit-min-device-pixel-ratio: 0)
+and (min-resolution: .001dpcm) {
+    .orderDateChooser {
+        left: 83% !important;
+    }
+    
+    .sendOrderDateChooser {
+      	left: 53% !important;
+    }
+
+    .dateChooserWeekdaySelected {
+        background:#b6e3ff !important;
+    }
+
+    .closeOrdForm {
+        left: auto !important;
+        right: -20px;
+        height: 11px !important;
+        top: 0px !important;
+    }
+}
+
+@-moz-document url-prefix() {
+    .orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER_PART1view"] .listGrid .rowHeaderStyle div div div {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: normal !important;
+        display: inline-grid !important;
+        align-items: center !important;
+        writing-mode: vertical-lr !important;
+        text-align: center !important;
+    }
+    .orderFormHeaderLayout div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayout div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="DOOR_ORDER1view"] .listGrid .rowHeaderStyle div div div, .orderFormHeaderLayoutCollapsed div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="DOOR_ORDER1view"] .listGrid .no-image div div div, .orderFormHeaderLayoutExpanded div[eventproxy *="FRAME_ORDER1view"] .listGrid .no-image div div div {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: normal !important;
+        display: inline-grid !important;
+        align-items: center !important;
+        writing-mode: vertical-lr !important;
+        text-align: center !important;
+    }
+}
+.saveStatus{
+	color: #689C41;
+	font-weight:bold;
+}
+
+.activeCell input[type='text']{
+	background-color: #F2DF74!important;
+    text-overflow:unset!important;	
+	
+}
+.activeCell input[class*="spinnerItem"]{
+	
+	height:25px!important;
+	
+	
+}
+.userCompanyDetailGridStyle .sorterButton img{
+	display:none;
+}
+.activeCell>div>span>table>tbody>tr>td>div{
+	background-color: #F2DF74!important;
+	text-overflow:unset!important;
+}
+ @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+ .activeCell>span>table>tbody>tr>td>div{
+	background-color: #F2DF74!important;
+	text-overflow:unset!important;
+	
+}
+ .activeCell>nobr>span>table>tbody>tr>td>div{
+	background-color: #F2DF74!important;
+	text-overflow:unset!important;
+	
+}
+ }
+ .selectItemLiteText{
+	text-overflow:unset!important;
+}
+.infowarning{
+color:green;
+ font-weight: bold;
+}
+.header-date{
+	padding-left:70px;
+}
+	.errorMsgLabelStyle .selectItemLiteControl, .errorMsgLabelStyle .selectItemLiteControlRTL, .errorMsgLabelStyle .selectItemLiteControlFocused, .errorMsgLabelStyle .selectItemLiteControlFocusedRTL, .errorMsgLabelStyle .selectItemLiteControlOver, .errorMsgLabelStyle .selectItemLiteControlOverRTL, .errorMsgLabelStyle .selectItemLiteControlFocusedOver, .errorMsgLabelStyle .selectItemLiteControlFocusedOverRTL, .errorMsgLabelStyle .selectItemLiteControlDisabled, .errorMsgLabelStyle .selectItemLiteControlDisabledRTL, .errorMsgLabelStyle .selectItemLiteControlError, .errorMsgLabelStyle .selectItemLiteControlErrorRTL, .errorMsgLabelStyle .selectItemLiteControlPending, .errorMsgLabelStyle .selectItemLiteControlPendingRTL, .errorMsgLabelStyle .selectItemLiteControlPendingFocused, .errorMsgLabelStyle .selectItemLiteControlPendingFocusedRTL, .errorMsgLabelStyle .selectItemLiteControlPendingOver, .errorMsgLabelStyle .selectItemLiteControlPendingOverRTL, .errorMsgLabelStyle .selectItemLiteControlPendingFocusedOver, .errorMsgLabelStyle .selectItemLiteControlPendingFocusedOverRTL, .errorMsgLabelStyle .selectItemLiteControlPendingDisabled, .errorMsgLabelStyle .selectItemLiteControlPendingDisabledRTL, .errorMsgLabelStyle .selectItemLiteControlPendingError, .errorMsgLabelStyle .selectItemLiteControlPendingErrorRTL, .errorMsgLabelStyle .selectItemLiteControlHint, .errorMsgLabelStyle .selectItemLiteControlHintRTL, .errorMsgLabelStyle .selectItemLiteControlDisabledHint, .errorMsgLabelStyle .selectItemLiteControlDisabledHintRTL {
+    border: 0px !important;
+    background: inherit !important;
+}
+.errorMsgLabelStyle div {
+    padding-left: 2px !important;
+    color:  #FF0000 !important;
+    font-size: 14.5px !important;
+    font-family: OpenSans_regular !important;
+    font-weight: bold !important;
+}
+input[name='lsdeadlock'] {
+     width:57px!important;
+}
+	.afterordFormLayout .orderFormHeaderLayoutCollapsed .listTable tr td.redBackGround, .afterordFormLayout .orderFormHeaderLayoutExpanded .listTable tr td.redBackGround, .afterordFormLayout .orderFormHeaderLayout .listTable tr td.redBackGround {
+    background: red !important;
+}
+.gridStyle .listTable tr td.redBackGround {
+    background: red !important;
+}
+.afterordFormLayout .orderFormHeaderLayoutCollapsed .listTable tr td.yellowBackGround, .afterordFormLayout .orderFormHeaderLayoutExpanded .listTable tr td.yellowBackGround, .afterordFormLayout .orderFormHeaderLayout .listTable tr td.yellowBackGround {
+    background: #f7f777 !important; 
+}
+.gridStyle .listTable tr td.yellowBackGround {
+    background: #f7f777 !important;
+}
+	.mfgModelGridStyle .listTable tr td[class *="yellowBackGround"]>div {
+    background: #f7f777 !important;
+    color:black !important;
+    
+}
+	.mfgModelGridStyle .listTable tr td[class *="yellowBackGround"] {
+    background: #f7f777 !important;
+     color:black !important;
+    
+}
+.serviceCenterTabGridStyle .listTable tr td {
+    font-size: 12px !important;
+    color: black;
+    text-align: left;
+    font-family: 'OpenSans_regular' !important;
+
+}
+
+.serviceCenterTabGridStyle .listTable tr td input {
+	
+	padding:0px!important;
+}
+
+.serviceCenterTabGridStyle .listTable tr:nth-child(odd) td {
+    background: #f4f4f4 !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.serviceCenterTabGridStyle .listTable tr:nth-child(even) td {
+    background: #ffffff !important;
+    border-bottom: 1px solid #cac5c5 !important;
+}
+
+.serviceCenterTabGridStyle .listTable tr td[class *="cellSelected"] {
+    background: #00a0d0 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #66c6e3 !important;
+    border-top: 1px solid #66c6e3 !important;
+}
+
+.serviceCenterTabGridStyle td[class *="headerButton"] {
+    background: #C9C9C9 !important;
+    color: black !important;
+    border-right: 1px solid #fff;
+}
+
+
+.serviceCenterTabGridStyle .sorterButton {
+    background: #4bb7d8 !important;
+}
+
+.serviceCenterTabGridStyle .sorterButton img{
+	display:none;
+}
+.messageStyle{
+	color:red!important;
+	border: 1px solid red;
+	font-weight: bold;
+}
+
+.specialinstructionmessage {
+    height: 25px !important;
+}
+
+.bulkSelect {
+	 font-size: 12px;
+} 
+
+.brandLabel {
+    font-size: 24px;
+    color: black !important;
+    font-family: 'Verdana' !important;
+}
+
+.sendDOTPopUp {
+	left: 17% !important;
+	width: 350px !important;
+}
+
+.brandLabelLayout {
+	top: 80px !important;
+}
+
+.sendOrderStaticTextValue .staticTextItem{
+	font-family: 'OpenSans_regular' !important;
+	font-size: 11px !important;
+	min-width: 150px !important;
+}
+
+.sendOrderDisclaimer{
+	font-family: 'OpenSans_Bold' !important;
+	width: 280px !important;
+}
+
+.sendOrderDisclaimerTwo{
+	font-family: 'OpenSans_Bold' !important;
+	width: 280px !important;
+	font-size: 12px !important;
+	color: #ff0000 !important;
+}
+
+.service_center_suborder .listTable tr td, .gridStyle .listTable tr td, .lockGridStyle .listTable tr td {
+    padding-left: 3px !important;
+}
+
+
+.hdwLocLeftPanelControl {
+    margin-top: 30px !important;
+}
+
+/* adding 2px blue bottom border */
+.page-header-section {
+    border-bottom: 2px solid #8a2b43;
+    font-size: 25px;
+}
+
+.control-panel-lebel {
+    font-size: 15px;
+}
+
+.liteDrawingDimHeading .staticTextItem {
+    font-size: 18px;
+    font-family: 'OpenSans_regular' !important;
+    text-align: left;
+    color: black !important;
+}

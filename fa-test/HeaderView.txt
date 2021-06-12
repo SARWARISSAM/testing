@@ -1,0 +1,729 @@
+package com.assaabloy.cow.client.view.common;
+
+import com.assaabloy.cow.client.CowMessages;
+import com.assaabloy.cow.client.aasc.aascconstant.AASCDataSourceConstant;
+import com.assaabloy.cow.client.constant.AppConstant;
+import com.assaabloy.cow.client.constant.IDsConstant;
+import com.assaabloy.cow.client.constant.StyleConstant;
+import com.assaabloy.cow.client.constant.datasource.DataSourceConstant;
+import com.assaabloy.cow.client.constant.datasource.DataSourceFieldsConstant;
+import com.assaabloy.cow.client.factory.dynamicgrid.DynamicGridPresenterFactory;
+import com.assaabloy.cow.client.presenter.common.HeaderPresenter;
+import com.assaabloy.cow.client.util.PermissionUtil;
+import com.assaabloy.cow.shared.Entitlements;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Cookies;
+import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.DSOperationType;
+import com.smartgwt.client.types.ImageStyle;
+import com.smartgwt.client.types.MultipleAppearance;
+import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.SelectionType;
+import com.smartgwt.client.types.SortArrow;
+import com.smartgwt.client.types.VerticalAlignment;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.HTMLFlow;
+import com.smartgwt.client.widgets.IButton;
+import com.smartgwt.client.widgets.IconButton;
+import com.smartgwt.client.widgets.Img;
+import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.Window;
+import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.Layout;
+import com.smartgwt.client.widgets.layout.LayoutSpacer;
+import com.smartgwt.client.widgets.layout.VLayout;
+
+/**
+ * Class name : HeaderView
+ * <p>
+ * Version info
+ * <p>
+ * Copyright notice
+ * <p>
+ * Author info : Nagarro
+ * <p>
+ * Creation date : 05/02/2018
+ * <p>
+ * Description : The header file.
+ */
+
+public class CowHeaderView extends VLayout implements HeaderPresenter.Display {
+
+	/**
+	 * The Constant MESSAGES.
+	 */
+	private static final CowMessages MESSAGES = GWT.create(CowMessages.class);
+
+	/**
+	 * The header style css.
+	 */
+	private static final String HEADER_STYLE_CSS = "assaHeader";
+
+	/**
+	 * The constant for CSS styles.
+	 */
+	private static final String LOGO_CSS = "logo ";
+
+	/**
+	 * The Constant LOGO_CONTAINER_CSS.
+	 */
+	private static final String LOGO_CONTAINER_CSS = "logo-container ";
+
+	/**
+	 * The Constant USER_NAME_CSS.
+	 */
+	private static final String USER_NAME_CSS = "user-name";
+
+	private static final String COMPANYTOOLTIPSTYLE = "comapnyTooltipStyle";
+
+	/**
+	 * The user welcome html.
+	 */
+	HTMLFlow userWelcomeHtmlText;
+	HTMLFlow userWelcomeHtmlIcon;
+
+	DynamicForm selectCompanyForm;
+
+	SelectItem companySelectItem;
+	SelectItem brandSelectItem;
+	SelectItem branchSelectItem;
+
+	IButton adminButton;
+	IButton userButton;
+
+	HTMLFlow adminIcon = new HTMLFlow();
+	HTMLFlow userIcon = new HTMLFlow();
+
+	HLayout userLayout = new HLayout();
+	HLayout adminLayout = new HLayout();
+
+	HLayout brandLogoLayout;
+
+	/**
+	 * The header layout.
+	 */
+	HLayout headerLayout;
+
+	/**
+	 * The collapse expand button.
+	 */
+	IButton collapseExpandButton;
+
+	/**
+	 * The entire menu detail including menu items.
+	 */
+	VLayout menuPnl;
+	IButton aboutMenuItem;
+	/**
+	 * The Clear Cache button
+	 */
+	final IButton clearCacheButton = new IButton(StyleConstant.CACHE_ICON);
+
+	IButton companyInfoItem;
+	IButton closeMenuPnlButton;
+	// Commenting the code block in accordance to ticket number 1505
+	// IButton addWidgetItem;
+	IButton logoutItem;
+	IButton menuButton;
+	IButton excelTemplateDownload;
+	IButton switchOffDropdowns;
+	IButton programTypeAccess;
+
+	Window companyInfoWindow;
+	VLayout companyInfoLayout;
+	HTMLFlow brandHtml = new HTMLFlow();
+
+	private Boolean isRefreshRequired;
+
+	private Integer recordsMigrated;
+	private Label importReview;
+	private HLayout lblLayout = new HLayout();
+	private Img brandLogo = new Img(StyleConstant.CURRIES_LOGO_IMG);
+
+	/**
+	 * Instantiates a new header view.
+	 */
+	public CowHeaderView() {
+		int brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+		headerLayout = new HLayout();
+		headerLayout.setID(IDsConstant.HEADER_VIEW_HEADER_LAYOUT_ID + brandNo);
+		headerLayout.setWidth("100%");
+		headerLayout.setStyleName(HEADER_STYLE_CSS);
+		headerLayout.setHeight(50);
+		headerLayout.setAlign(Alignment.RIGHT);
+		headerLayout.setPadding(20);
+
+		final IButton logo = new IButton("<span class='assa-content'>" + MESSAGES.header_view_logo_button_assa()
+				+ "</span><span class='cow-content'>" + MESSAGES.header_view_logo_button_cow() + "</span>");
+		logo.setID(IDsConstant.HEADER_VIEW_LOGO_ID + brandNo);
+		logo.setAutoFit(true);
+
+		userWelcomeHtmlText = new HTMLFlow();
+		userWelcomeHtmlIcon = new HTMLFlow();
+		userWelcomeHtmlIcon.setStyleName("userWelcomeHtmlIconStyle ");
+		userWelcomeHtmlText.setStyleName(USER_NAME_CSS);
+		userWelcomeHtmlText.setAutoWidth();
+		userWelcomeHtmlIcon.setWidth(10);
+		userWelcomeHtmlText.setID(IDsConstant.HEADER_VIEW_USER_WELCOME_HTML_ID + brandNo);
+		userWelcomeHtmlIcon.setID("header_view_user_welcome_icon" + brandNo);
+		headerLayout.addMember(logo);
+		headerLayout.addMember(new LayoutSpacer());
+		selectCompanyForm = new DynamicForm();
+
+		prepareCompanySelectItemCombobox();
+		preparebrandSelectItemCombobox();
+		prepareBranchSelectItemCombobox();
+		brandHtml.setWidth(10);
+		brandHtml.setStyleName("brandStyle ");
+		brandHtml.setContents("<i class=\"fa fa-tags\" aria-hidden=\"true\" style=\"float:right;font-size:16px\"></i>");
+
+		selectCompanyForm.setFields(brandSelectItem, companySelectItem);
+		DynamicForm s = new DynamicForm();
+
+		s.setFields(branchSelectItem);
+
+		adminLayout = new HLayout();
+		adminLayout.setAutoWidth();
+		adminButton = new IButton();
+		adminButton.setTitle("Admin");
+		adminButton.setBaseStyle("switchButton");
+		adminButton.setHeight(25);
+		adminButton.setWidth(40);
+		adminIcon.setID("adminIcon");
+		adminIcon.setWidth(25);
+		adminIcon.setHeight(25);
+		adminIcon.setContents(
+				"<i class=\"fa fa-cog\" aria-hidden=\"true\" style=\"font-size: 16px; color: #00a0d0; padding-top: 4px !important\"></i>");
+
+		userLayout = new HLayout();
+		userLayout.setAutoWidth();
+		userLayout.setLayoutLeftMargin(20);
+		userLayout.setLayoutRightMargin(25);
+		userButton = new IButton();
+		userButton.setTitle("User");
+		userButton.setBaseStyle("switchButton");
+		userButton.setHeight(25);
+		userButton.setWidth(30);
+		userIcon.setID("userIcon");
+		userIcon.setWidth(25);
+		userIcon.setHeight(25);
+		userIcon.setContents("<i class=\"fa fa-user\" style=\"font-size: 16px; color: #00a0d0; padding-top: 4px !important\"></i>");
+
+		userLayout.addMembers(userIcon, userButton);
+		adminLayout.addMembers(adminIcon, adminButton);
+		
+//		adminButton = getAdminModuleHeaderButton("adminButton", "Admin");
+//		userButton = getAdminModuleHeaderButton("userButton", "User");	
+//		
+//		adminLayout.setAutoWidth();
+//		userLayout.setAutoWidth();
+//		userLayout.setLayoutLeftMargin(20);
+//		userLayout.setLayoutRightMargin(25);
+//		adminLayout.addMember(adminButton);
+//		userLayout.addMember(userButton);
+
+		
+		importReview = new Label("<b>Import Review</b>");
+		lblLayout.setHeight(60);
+		importReview.setHeight("100%");
+		lblLayout.addMembers(importReview);
+		importReview.setBaseStyle("importStyle ");
+
+		if (PermissionUtil.authorize(Entitlements.AASC)) {
+
+			headerLayout.addMembers(lblLayout, adminLayout, userLayout, s, brandHtml, selectCompanyForm,
+					userWelcomeHtmlIcon, userWelcomeHtmlText);
+		} else {
+			GWT.log("in else header View");
+			headerLayout.addMembers(lblLayout, adminLayout, userLayout, brandHtml, selectCompanyForm,
+					userWelcomeHtmlIcon, userWelcomeHtmlText);
+		}
+
+		lblLayout.setStyleName("importLabelStyle ");
+		logo.setBaseStyle(LOGO_CSS);
+		logo.setStyleName(LOGO_CONTAINER_CSS);
+
+		brandLogoLayout = new HLayout();
+		brandLogoLayout.setAlign(Alignment.CENTER);
+		brandLogoLayout.setHeight(50);
+		brandLogoLayout.setStyleName("brandLabelLayout");
+
+		if (brandNo == 41) {
+			final Label brandLabel = new Label(AppConstant.AASC_BRAND_NAME);
+			brandLabel.setHeight(50);
+			brandLabel.setStyleName("brandLabel");
+			brandLogoLayout.addMembers(brandLabel);
+		} else {
+			if (brandNo == 15) {
+				brandLogo.setSrc(StyleConstant.CECO_LOGO_IMG);
+			}
+			brandLogo.setImageHeight(60);
+			brandLogo.setImageWidth(120);
+			brandLogo.setImageType(ImageStyle.NORMAL);
+			brandLogoLayout.addMembers(brandLogo);
+		}
+
+		this.addMembers(headerLayout, brandLogoLayout);
+		this.setID(IDsConstant.HEADER_VIEW_ID + brandNo);
+		prepareUserMenuDetails();
+		setupCompanyInfoWindow();
+	}
+	
+	private IconButton getAdminModuleHeaderButton(final String id, final String title) {
+        final IconButton button = new IconButton(title);
+        button.setID(id);
+        button.setHeight(25);
+        button.setMinWidth(40);
+        button.setAutoWidth();
+        button.setValign(VerticalAlignment.BOTTOM);
+        button.setWrap(false);
+        button.setAlign(Alignment.CENTER);
+        button.setOverflow(Overflow.VISIBLE);
+        
+        button.setRadioGroup("proposal-radio-group");
+        button.setActionType(SelectionType.RADIO);
+        button.setBorder(null);
+        button.setShowIcon(true);
+        button.setShowSelectedIcon(true);
+        button.setShowRollOverIcon(true);
+        button.setShowDisabledIcon(true);
+        button.setShowSelectedIcon(true);
+        button.setShowDownIcon(true);
+
+ 
+
+        return button;
+	}
+
+	 
+	private SelectItem prepareBranchSelectItemCombobox() {
+
+		GWT.log("in branch dropdwon View");
+		branchSelectItem = new SelectItem();
+		ListGridField branchNameField = new ListGridField("location", "");
+		branchSelectItem.setShowTitle(false);
+		branchSelectItem.setWidth(150);
+
+		branchSelectItem.setCellStyle(StyleConstant.COMPANY_SELECT_STYLE);
+		branchSelectItem.setPickListFields(branchNameField);
+		branchSelectItem.setPickListHeight(300);
+		branchSelectItem.setMultipleAppearance(MultipleAppearance.PICKLIST);
+		branchSelectItem.setDisplayField(DataSourceFieldsConstant.BRANCH_LOCATION);
+		branchSelectItem.setValueField(DataSourceFieldsConstant.BRANCH_LOCATION);
+		String branchName = Cookies.getCookie(DataSourceFieldsConstant.BRANCH_LOCATION);
+		if (branchName == null) {
+			branchName = "NorthEast";
+		}
+		branchSelectItem.setDefaultValue(branchName);
+		branchSelectItem.setMultiple(false);
+
+		branchSelectItem.setHoverStyle(COMPANYTOOLTIPSTYLE);
+		branchSelectItem.setAutoFetchData(true);
+		branchSelectItem.setPickListWidth(150);
+		branchNameField.setCanSort(true);
+		branchNameField.setShowDefaultContextMenu(false);
+		DSRequest req = new DSRequest(DSOperationType.FETCH);
+		branchSelectItem.setOptionFilterContext(req);
+		branchSelectItem.setOptionDataSource(DataSourceConstant.AASC_BRANCHES_DS);
+		branchSelectItem.hide();
+
+		branchSelectItem.setWidth(150);
+
+		return branchSelectItem;
+
+	}
+
+	private SelectItem preparebrandSelectItemCombobox() {
+		String userAgent = com.google.gwt.user.client.Window.Navigator.getUserAgent();
+		// AASCDataSourceConstant.BRANDS_DS
+		brandSelectItem = new SelectItem();
+		ListGridField brandNameField = new ListGridField("brandName", " ");
+		brandSelectItem.setShowTitle(false);
+		brandSelectItem.setWidth(100);
+		brandSelectItem.setCellStyle(StyleConstant.COMPANY_SELECT_STYLE);
+		brandSelectItem.setPickListFields(brandNameField);
+		brandSelectItem.setPickListHeight(300);
+		brandSelectItem.setMultipleAppearance(MultipleAppearance.PICKLIST);
+		brandSelectItem.setDisplayField(DataSourceFieldsConstant.BRAND_NAME);
+		brandSelectItem.setValueField(DataSourceFieldsConstant.BRAND_NAME);
+		String brandName = Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME);
+		brandSelectItem.setDefaultValue(brandName);
+		brandSelectItem.setMultiple(false);
+		brandSelectItem.setHoverStyle(COMPANYTOOLTIPSTYLE);
+		brandSelectItem.setAutoFetchData(true);
+		brandSelectItem.setPickListWidth(150);
+		brandNameField.setCanSort(true);
+		brandNameField.setShowDefaultContextMenu(false);
+		DSRequest req = new DSRequest(DSOperationType.FETCH);
+		brandSelectItem.setOptionFilterContext(req);
+		brandSelectItem.setOptionDataSource(DataSource.get(AASCDataSourceConstant.BRANDS_DS));
+		if (SC.isIE()) {
+			brandSelectItem.setWidth(115);
+		} else {
+			if (userAgent.contains("Edge")) {
+				brandSelectItem.setWidth(115);
+			} else {
+				brandSelectItem.setWidth(100);
+			}
+		}
+		return brandSelectItem;
+	}
+
+	// This method return combobox for changiong company
+	private SelectItem prepareCompanySelectItemCombobox() {
+		int brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+
+		companySelectItem = new SelectItem();
+		ListGridField customerName = new ListGridField(DataSourceFieldsConstant.CUSTOMER_NAME,
+				DataSourceFieldsConstant.CUSTOMER_NAME);
+		ListGridField customerNo = new ListGridField(DataSourceFieldsConstant.CUSTOMER_NO,
+				DataSourceFieldsConstant.CUSTOMER_NO);
+		// Added by Milan Gaur : As per CR #42 : Add a customer territory column in
+		// branch selection popup - Starts here.
+		ListGridField customerTerritory = new ListGridField("territory", "territory");
+		// Added by Milan Gaur : As per CR #42 : Add a customer territory column in
+		// branch selection popup - Ends here.
+		companySelectItem.setShowTitle(false);
+		companySelectItem.setID(IDsConstant.COMPANY_SELECT_ITEM + brandNo);
+		companySelectItem.setWidth("100%");
+		companySelectItem.setCellStyle(StyleConstant.COMPANY_SELECT_STYLE);
+		// Added by Milan Gaur : As per CR #42 : Add a customer territory column in
+		// branch selection popup - Starts here.
+		companySelectItem.setPickListFields(customerNo, customerName, customerTerritory);
+		// Added by Milan Gaur : As per CR #42 : Add a customer territory column in
+		// branch selection popup - Ends here.
+		companySelectItem.setPickListHeight(300);
+		companySelectItem.setMultipleAppearance(MultipleAppearance.PICKLIST);
+		companySelectItem.setDisplayField(DataSourceFieldsConstant.CUSTOMER_NAME);
+		companySelectItem.setValueField(DataSourceFieldsConstant.CUSTOMER_NAME);
+		companySelectItem.setMultiple(false);
+		companySelectItem.setHoverStyle(COMPANYTOOLTIPSTYLE);
+		companySelectItem.setAutoFetchData(true);
+		companySelectItem.setPickListWidth(320);
+		ListGrid pickListProperties = new ListGrid();
+		pickListProperties.setShowSortArrow(SortArrow.FIELD);
+		pickListProperties.setShowFilterEditor(true);
+		companySelectItem.setPickListProperties(pickListProperties);
+		customerName.setCanSort(true);
+		customerName.setShowDefaultContextMenu(false);
+		customerNo.setCanSort(true);
+		customerNo.setShowDefaultContextMenu(false);
+		Criteria criteria = new Criteria();
+		criteria.setAttribute("branchNo", Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+		companySelectItem.setOptionCriteria(criteria);
+		DSRequest req = new DSRequest(DSOperationType.FETCH, criteria);
+		companySelectItem.setOptionFilterContext(req);
+		companySelectItem.setOptionDataSource(DataSource.get(DataSourceConstant.SELECT_COMPANY));
+		return companySelectItem;
+
+	}
+
+	private void setupCompanyInfoWindow() {
+		companyInfoWindow = new Window();
+		companyInfoWindow.setHeight(StyleConstant.HUNDRED_PERCENT);
+		companyInfoWindow.setWidth(StyleConstant.HUNDRED_PERCENT);
+		companyInfoWindow.setShowMinimizeButton(false);
+		companyInfoWindow.setTitle(MESSAGES.companyInformation());
+		companyInfoWindow.setModalMaskStyle("modalMask");
+
+		companyInfoLayout = new VLayout();
+		companyInfoLayout.setHeight(StyleConstant.HUNDRED_PERCENT);
+		companyInfoLayout.setWidth(StyleConstant.HUNDRED_PERCENT);
+		companyInfoWindow.addItem(companyInfoLayout);
+
+		companyInfoWindow.setCanDragReposition(false);
+		companyInfoWindow.setIsModal(true);
+		companyInfoWindow.setShowModalMask(true);
+		companyInfoWindow.setWidth(StyleConstant.NINTY_PERCENT);
+		companyInfoWindow.setHeight(StyleConstant.INT_670);
+		companyInfoWindow.setAutoCenter(true);
+		companyInfoWindow.centerInPage();
+		companyInfoWindow.setBorder(StyleConstant.COMMON_BORDER);
+		companyInfoWindow.setCanDrag(false);
+		companyInfoWindow.setCanDragResize(false);
+		companyInfoWindow.setCanDragScroll(false);
+		companyInfoWindow.setPadding(StyleConstant.INT_5);
+	}
+
+	/**
+	 * It will create user drop down menu showing details like companny info on
+	 * extreme left
+	 */
+	public void prepareUserMenuDetails() {
+		int brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+		String brandName = (Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME));
+		menuPnl = new VLayout();
+		menuPnl.setMinWidth(248);
+		menuPnl.setID(IDsConstant.DROP_DOWN_MENU + brandNo);
+		menuPnl.setStyleName(StyleConstant.DROP_DOWN_MENU_STYLE);
+		menuPnl.setVisible(false);
+		aboutMenuItem = new IButton(MESSAGES.customer_about_info());
+		companyInfoItem = new IButton(MESSAGES.customer_company_info());
+		closeMenuPnlButton = new IButton(MESSAGES.close());
+		// addWidgetItem = new IButton(MESSAGES.add_widget());
+		logoutItem = new IButton(MESSAGES.customer_logout());
+		excelTemplateDownload = new IButton(MESSAGES.excelImport());
+		switchOffDropdowns = DynamicGridPresenterFactory.isDropdownOff() ? new IButton("Switch On Dropdowns")
+				: new IButton(MESSAGES.swithOffDropdowns());
+		programTypeAccess = new IButton("User Management");
+		clearCacheButton.setTitle("Clear Cache");
+		if (brandName.equals("Curries")) {
+
+			menuPnl.addMembers(aboutMenuItem, companyInfoItem, clearCacheButton,
+					/* addWidgetItem, */ excelTemplateDownload, switchOffDropdowns, programTypeAccess, logoutItem,
+					closeMenuPnlButton);
+
+		} else if (brandName.equals("Ceco Door")) {
+
+			menuPnl.addMembers(aboutMenuItem, companyInfoItem, clearCacheButton,
+					/* addWidgetItem, */ switchOffDropdowns, programTypeAccess, logoutItem, closeMenuPnlButton);
+
+		} else {
+
+			menuPnl.addMembers(aboutMenuItem, companyInfoItem, clearCacheButton, /* addWidgetItem, */ logoutItem,
+					switchOffDropdowns, closeMenuPnlButton);
+		}
+		aboutMenuItem.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		companyInfoItem.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		closeMenuPnlButton.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		// addWidgetItem.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		logoutItem.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		clearCacheButton.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		excelTemplateDownload.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		switchOffDropdowns.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+		programTypeAccess.setStyleName(StyleConstant.MENU_ITEM_STYLE);
+
+		aboutMenuItem.setWidth(248);
+		companyInfoItem.setWidth(248);
+		closeMenuPnlButton.setWidth(248);
+		// addWidgetItem.setWidth(248);
+		logoutItem.setWidth(248);
+		clearCacheButton.setWidth(248);
+		excelTemplateDownload.setWidth(248);
+		switchOffDropdowns.setWidth(248);
+		programTypeAccess.setWidth(248);
+
+		aboutMenuItem.setHeight(33);
+		companyInfoItem.setHeight(33);
+		closeMenuPnlButton.setHeight(33);
+		// addWidgetItem.setHeight(33);
+		logoutItem.setHeight(33);
+		clearCacheButton.setHeight(33);
+		excelTemplateDownload.setHeight(33);
+		switchOffDropdowns.setHeight(33);
+		programTypeAccess.setHeight(33);
+
+		menuButton = new IButton(StyleConstant.MENU_BAR);
+		menuButton.setWidth(15);
+		menuButton.setID(IDsConstant.MENU_BUTTON + brandNo);
+
+		headerLayout.addMember(userWelcomeHtmlText);
+		headerLayout.addMember(userWelcomeHtmlIcon);
+
+		headerLayout.addMember(menuButton);
+		menuButton.setStyleName("profile_dropDown");
+
+	}
+
+	/**
+	 * Return headerLayout containing icon and Ibutton.
+	 */
+	@Override
+	public HLayout getHeaderLayout() {
+		return headerLayout;
+	}
+
+	/**
+	 * Return Ibutton used as menu Button to open hide menu.
+	 */
+	@Override
+	public IButton getMenuButton() {
+		return menuButton;
+	}
+
+	/**
+	 * @return the companyInfoLayout
+	 */
+	public VLayout getCompanyInfoLayout() {
+		return companyInfoLayout;
+	}
+
+	/**
+	 * Return Entire menu panel.
+	 */
+
+	@Override
+	public VLayout getMenuPnl() {
+		return menuPnl;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.assaabloy.cow.client.presenter.common.HeaderPresenter.Display#
+	 * getAddWidgetItem()
+	 */
+	/*
+	 * @Override public IButton getAddWidgetItem() { return addWidgetItem; }
+	 */
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.assaabloy.cow.client.presenter.common.HeaderPresenter.Display#
+	 * getLogoutItem()
+	 */
+	@Override
+	public IButton getLogoutItem() {
+		return logoutItem;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.assaabloy.cow.client.presenter.common.HeaderPresenter.Display#
+	 * getAboutMenuItem()
+	 */
+	@Override
+	public IButton getAboutMenuItem() {
+		return aboutMenuItem;
+	}
+
+	@Override
+	public Layout getCompanyLayout() {
+		return companyInfoLayout;
+	}
+
+	@Override
+	public Window getCompanyDialog() {
+		return companyInfoWindow;
+	}
+
+	@Override
+	public SelectItem getCompanySelectItem() {
+		return companySelectItem;
+	}
+
+	@Override
+	public SelectItem getBrandSelectItem() {
+		return brandSelectItem;
+	}
+
+	@Override
+	public IButton getCompanyInfoItem() {
+		return companyInfoItem;
+	}
+
+	@Override
+	public HTMLFlow getBrandHtml() {
+		return brandHtml;
+	}
+
+	@Override
+	public HTMLFlow getUserWelcomeHtmlText() {
+		return userWelcomeHtmlText;
+	}
+
+	@Override
+	public HTMLFlow getUserWelcomeHtmlIcon() {
+		return userWelcomeHtmlIcon;
+	}
+
+	/**
+	 * @return the isRefreshRequired
+	 */
+	@Override
+	public Boolean getIsRefreshRequired() {
+		return isRefreshRequired;
+	}
+
+	/**
+	 * @param isRefreshRequired
+	 *            the isRefreshRequired to set Check if there are some changes in
+	 *            branch due to migration by internal user True if there are some
+	 *            new company in project landing page.
+	 */
+	public void setIsRefreshRequired(Boolean isRefreshRequired) {
+		this.isRefreshRequired = isRefreshRequired;
+	}
+
+	// This field is used to show count of branch/company migrated by internal user.
+	@Override
+	public void setRecordsMigrated(Integer recordsMigrated) {
+		this.recordsMigrated = recordsMigrated;
+
+	}
+
+	@Override
+	public Integer getRecordsMigrated() {
+		return recordsMigrated;
+	}
+
+	@Override
+	public Canvas getClearCacheButton() {
+		return clearCacheButton;
+	}
+
+	@Override
+	public Label getimportReview() {
+		return importReview;
+	}
+
+	@Override
+	public IButton getExcelTemplateDownload() {
+		return excelTemplateDownload;
+	}
+
+	@Override
+	public IButton geSwitchOffDropdowns() {
+		return switchOffDropdowns;
+	}
+
+	@Override
+	public IButton getProgramTypeAccess() {
+		return programTypeAccess;
+	}
+
+	@Override
+	public SelectItem getBranchSelectItem() {
+		return branchSelectItem;
+	}
+
+	@Override
+	public IButton getCloseMenuPnlButton() {
+		return closeMenuPnlButton;
+	}
+
+	@Override
+	public IButton getAdminButton() {
+		return adminButton;
+	}
+
+	@Override
+	public IButton getUserButton() {
+		return userButton;
+	}
+
+	@Override
+	public HLayout getUserLayout() {
+		return userLayout;
+	}
+
+	@Override
+	public HLayout getAdminLayout() {
+		return adminLayout;
+	}
+	
+	@Override
+	public HLayout getBrandLogoLayout() {
+		return brandLogoLayout;
+	}
+}

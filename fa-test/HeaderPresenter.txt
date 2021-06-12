@@ -1,0 +1,720 @@
+package com.assaabloy.cow.client.presenter.common;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.assaabloy.cow.client.CowMessages;
+import com.assaabloy.cow.client.constant.AppConstant;
+import com.assaabloy.cow.client.constant.StyleConstant;
+import com.assaabloy.cow.client.constant.datasource.DMIContants;
+import com.assaabloy.cow.client.constant.datasource.DataSourceConstant;
+import com.assaabloy.cow.client.constant.datasource.DataSourceFieldsConstant;
+import com.assaabloy.cow.client.event.CloseOrderFormEvent;
+import com.assaabloy.cow.client.event.HideBranchInfoEvent;
+import com.assaabloy.cow.client.event.HideCompanyInformationModalEvent;
+import com.assaabloy.cow.client.event.HideOptionsInHeaderMenu;
+import com.assaabloy.cow.client.event.LoadAdminModuleEvent;
+import com.assaabloy.cow.client.event.LogoutEvent;
+import com.assaabloy.cow.client.factory.PresenterFactory;
+import com.assaabloy.cow.client.factory.ViewFactory;
+import com.assaabloy.cow.client.factory.dynamicgrid.DynamicGridPresenterFactory;
+import com.assaabloy.cow.client.presenter.Presenter;
+import com.assaabloy.cow.client.util.LoadMask;
+import com.assaabloy.cow.client.util.PermissionUtil;
+import com.assaabloy.cow.shared.Entitlements;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.ui.Widget;
+import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.rpc.DMI;
+import com.smartgwt.client.rpc.RPCRequest;
+import com.smartgwt.client.rpc.RPCResponse;
+import com.smartgwt.client.types.DSOperationType;
+import com.smartgwt.client.types.Visibility;
+import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.util.Offline;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.HTMLFlow;
+import com.smartgwt.client.widgets.IButton;
+import com.smartgwt.client.widgets.IconButton;
+import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.Window;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.Layout;
+import com.smartgwt.client.widgets.layout.VLayout;
+
+/**
+ * The Class HeaderPresenter.
+ * 
+ * @author Nagarro
+ * @since September 28, 2017 Presenter component for Header
+ */
+public class HeaderPresenter implements Presenter<Layout> {
+
+	/**
+	 * The Constant MESSAGES.
+	 */
+	private static final CowMessages MESSAGES = GWT.create(CowMessages.class);
+
+	/** Event bus. */
+	private HandlerManager eventBus;
+
+	/** Header display. */
+	private final Display display;
+
+	
+	private static String isAASCAdmin;
+	
+	/**
+	 * Initialization.
+	 * 
+	 * @param eventBus
+	 *            eventBus to be set
+	 * @param display
+	 *            to be set
+	 */
+	public HeaderPresenter(final HandlerManager eventBus, Display display) {
+		this.eventBus = eventBus;
+		this.display = display;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void go(final Layout container) {
+	
+		display.getMenuPnl().setVisibility(Visibility.HIDDEN);
+		container.addMember(display.asWidget());
+		showUserDetail();
+		enableCompanySelectItem();
+		display.getCompanySelectItem().setAutoFetchData(true);
+		display.getCompanySelectItem().fetchData();
+		bind(); 
+	}
+	
+
+	public void enableCompanySelectItem() {
+		display.getCompanySelectItem().enable();
+		
+	}
+
+	private static void showUserDetail() {
+		
+		DMI.call(DMIContants.APP_NAME, DMIContants.USERS_SERVICE, DMIContants.GET_LOGGED_IN_USER_DETAIL,
+				(response, rawData, request) -> {
+					if (response.getStatus() == RPCResponse.STATUS_SUCCESS) {
+						@SuppressWarnings("unchecked")
+						Map<String, ?> userDTO = (Map<String, ?>) JSOHelper.convertToJava(response.getDataAsObject());
+						ViewFactory.getCowHeaderView().getUserWelcomeHtmlIcon()
+								.setContents("<i class=\"fa fa-user\" aria-hidden=\"true\" style=\"font-size:16px\">");
+						ViewFactory.getCowHeaderView().getUserWelcomeHtmlText()
+								.setContents("<p aria-hidden=\"true\">" + userDTO.get("fullName") + "</i>");
+						String userClass = (String) userDTO.get("doorGroupAdminAuthority");
+						if (userClass != null && "N".equals(userClass)) {
+							ViewFactory.getCowHeaderView().getClearCacheButton().hide();
+							ViewFactory.getCowHeaderView().getProgramTypeAccess().hide();
+							
+							// if not admin, hide the admin and user buttons for normal user
+							ViewFactory.getCowHeaderView().getAdminLayout().hide();
+							ViewFactory.getCowHeaderView().getUserLayout().hide();
+						}
+						
+						//default setting focus to user
+						ViewFactory.getCowHeaderView().getUserButton().setTitle("<span style='color: #00a0d0; font-weight: 20px'>User</span>");
+						Integer brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+						//hide admin module for AASC
+						if(brandNo==41) {
+							ViewFactory.getCowHeaderView().getAdminLayout().hide();
+							ViewFactory.getCowHeaderView().getUserLayout().hide();
+						}
+						
+						isAASCAdmin = (String) userDTO.get("doorGroupAASCAdminAuthority");
+						
+						if(isAASCAdmin !=null && "Y".equals(isAASCAdmin)) {
+							ViewFactory.getCowHeaderView().getBranchSelectItem().show();
+						}
+					}
+				}, new Object[] { null });
+	}
+
+	/**
+	 * Bind events of view's components to event bus.
+	 */
+	public void bind() {
+		
+		display.getAdminButton().addClickHandler(handler->{
+			display.getAdminButton().setTitle("<span style='color: #00a0d0; font-weight: 40px'>Admin</span>");
+			display.getUserButton().setTitle("<span style='color: black; font-weight: 40px'>User</span>");
+			ViewFactory.getCowHeaderView().getBrandLogoLayout().hide();
+			ViewFactory.getCowHeaderView().getUserWelcomeHtmlText().setVisibility(Visibility.HIDDEN);
+			ViewFactory.getCowHeaderView().getUserWelcomeHtmlIcon().setVisibility(Visibility.HIDDEN);
+			eventBus.fireEvent(new HideBranchInfoEvent(true));
+			eventBus.fireEvent(new LoadAdminModuleEvent());
+		});
+		
+		
+		display.getUserButton().addClickHandler(handler->{
+			display.getAdminButton().setTitle("<span style='color:black; font-weight: 20px'>Admin</span>");
+			display.getUserButton().setTitle("<span style='color: #00a0d0; font-weight: 20px'>User</span>");
+			ViewFactory.getCowHeaderView().getBrandLogoLayout().show();
+			ViewFactory.getCowHeaderView().getUserWelcomeHtmlText().show();
+			ViewFactory.getCowHeaderView().getUserWelcomeHtmlIcon().show();
+			eventBus.fireEvent(new HideBranchInfoEvent(false));
+			eventBus.fireEvent(new CloseOrderFormEvent());
+		});
+		
+		display.getProgramTypeAccess().addClickHandler(handler->{
+			showHideMenu(display.getMenuPnl());
+			PresenterFactory.getAddEditProgramTypePopUpPresenter().go();
+		});
+
+
+		display.getMenuButton().addClickHandler(handler -> showHideMenu(display.getMenuPnl())
+		);
+		
+		display.getCloseMenuPnlButton().addClickHandler(handler -> 
+			showHideMenu(display.getMenuPnl())
+		);
+		
+		display.getBrandSelectItem().addChangedHandler(handler ->{
+			ListGridRecord selectedRecord = display.getBrandSelectItem().getSelectedRecord();
+			String brandName = selectedRecord.getAttributeAsString(DataSourceFieldsConstant.BRAND_NAME);
+			String currentBrandName = Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME);
+			if(currentBrandName!=null && !currentBrandName.equals(brandName)) {
+				saveBrandInformation();
+			}
+		});
+		display.getBranchSelectItem().addChangedHandler(handler ->{
+			ListGridRecord selectedRecord = display.getBranchSelectItem().getSelectedRecord();
+			String selectedBranchName = selectedRecord.getAttributeAsString(DataSourceFieldsConstant.BRANCH_LOCATION);
+			String currentBranchName = Cookies.getCookie(DataSourceFieldsConstant.BRANCH_LOCATION);
+			
+			if(currentBranchName==null ||( currentBranchName!=null && !currentBranchName.equals(selectedBranchName))) {
+				saveBranchInformation();
+		}
+		});
+		geSwitchOffDropdownsHandler();
+
+		display.getAboutMenuItem().addClickHandler(handler -> {
+			showHideMenu(display.getMenuPnl());
+			PresenterFactory.getAboutPopUpPresenter().go();
+		});
+
+		getExcelTemplateDownloadHandler();
+		
+		
+		getClearCacheButtonHandler();
+
+		display.getCompanyInfoItem().addClickHandler(handler -> {
+			showHideMenu(display.getMenuPnl());
+			showCompanyInformation(false);
+		});
+
+		eventBus.addHandler(HideCompanyInformationModalEvent.type, event -> {
+		
+			display.getCompanyDialog().close();
+			event.setShouldOpenDOTUp(false);
+		});
+		
+		hideOptionsInHeaderMenuBusHandler();
+		hideBranchInfoEventBusHandler();
+
+		getCompanySelectItemHandler();
+
+		display.getLogoutItem().addClickHandler(event -> eventBus.fireEvent(new LogoutEvent()));
+
+		/*
+		 * Below event handler is for handling logout event and invalidate user session.
+		 */
+		logoutEventBusHandler();
+		
+	
+		
+		display.getCompanySelectItem().addClickHandler(handler -> {
+			
+			ListGridRecord[] recordList = display.getCompanySelectItem().getClientPickListData();
+
+			int length = recordList.length;
+
+			if (Boolean.parseBoolean(String.valueOf(display.getIsRefreshRequired()))) {
+				display.getCompanySelectItem().invalidateDisplayValueCache();
+				display.getCompanySelectItem().fetchData((dsResponse, data, dsRequest) -> {
+					GWT.log(dsResponse.getData().length + "new data length");
+					if (dsResponse.getStatus() == DSResponse.STATUS_SUCCESS && dsResponse.getData() != null && dsResponse.getData().length >= length + display.getRecordsMigrated()) {
+							display.setIsRefreshRequired(false);
+							display.setRecordsMigrated(0);
+						
+					}
+				});
+			}
+
+		});
+	}
+
+	private void logoutEventBusHandler() {
+		eventBus.addHandler(LogoutEvent.type, event -> {
+			 DMI.call(DMIContants.APP_NAME, "SessionService",
+						"clearCompanyDetails",
+						(response, rawData, request) -> Cookies.removeCookie(DataSourceFieldsConstant.CUSTOMER_NO)
+						, new Object[] {null});
+			
+			
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.POST,
+					"https://connect.assaabloy.com/");
+			try {
+				builder.sendRequest("", new RequestCallback() {
+					public void onError(Request request, Throwable exception) {
+						/* Do nothing */
+					}
+					public void onResponseReceived(Request request, Response response) {
+						com.google.gwt.user.client.Window.Location
+						.replace("https://connect.assaabloy.com/");
+					}
+				});
+			} catch (Exception ex) {
+				GWT.log("Error redirecting to logout page");
+			}
+		});
+	}
+
+	private void getExcelTemplateDownloadHandler() {
+		display.getExcelTemplateDownload().addClickHandler(event -> {
+			showHideMenu(display.getMenuPnl());
+        	final RPCRequest rpcRequest = new RPCRequest();
+        	rpcRequest.setDownloadResult(Boolean.TRUE);                      
+            DMI.call(DMIContants.APP_NAME, "ExcelImportService", "downloadExcelTemplate", null, null, rpcRequest);
+		});
+	}
+
+	private void geSwitchOffDropdownsHandler() {
+		display.geSwitchOffDropdowns().addClickHandler(event -> {
+			showHideMenu(display.getMenuPnl());
+			String customerNum = Cookies.getCookie(DataSourceFieldsConstant.CUSTOMER_NO);
+			Integer brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+            String brandName = Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME);
+            String branchName = Cookies.getCookie(DataSourceFieldsConstant.BRANCH_LOCATION);
+			if (display.geSwitchOffDropdowns().getTitle().equals(AppConstant.SWITCH_OFF_DROPDOWNS)) {
+				DMI.call(DMIContants.APP_NAME, DMIContants.LOGIN_USER_DETAILS_SERVICE, DMIContants.SAVE_PREFFERED_DETAILS,
+						(response, rawData, request) -> {
+							DynamicGridPresenterFactory.setDropdownOff(true);
+							display.geSwitchOffDropdowns().setTitle(AppConstant.SWITCH_ON_DROPDOWNS);
+							Offline.put(AppConstant.DROP_DOWNS_SWITCHED_OFF , true);
+						}, new Object[] { customerNum,brandNo ,brandName,branchName,true});
+				
+			} else {
+				DMI.call(DMIContants.APP_NAME, DMIContants.LOGIN_USER_DETAILS_SERVICE, DMIContants.SAVE_PREFFERED_DETAILS,
+						(response, rawData, request) -> {
+							DynamicGridPresenterFactory.setDropdownOff(false);
+							display.geSwitchOffDropdowns().setTitle(AppConstant.SWITCH_OFF_DROPDOWNS);
+							Offline.put(AppConstant.DROP_DOWNS_SWITCHED_OFF , false);
+						}, new Object[] { customerNum,brandNo ,brandName,branchName,false});
+				
+			}
+		});
+	}
+
+	private void hideOptionsInHeaderMenuBusHandler() {
+		eventBus.addHandler(HideOptionsInHeaderMenu.type, event -> {
+			ListGridRecord[] recordList = display.getCompanySelectItem().getClientPickListData();
+            int length = recordList.length;
+			display.getCompanySelectItem().invalidateDisplayValueCache();
+			display.getCompanySelectItem().fetchData((dsResponse, data, dsRequest) -> {
+				GWT.log(dsResponse.getData().length + "new data length");
+				if (dsResponse.getStatus() == DSResponse.STATUS_SUCCESS && dsResponse.getData() != null && dsResponse.getData().length >= length + display.getRecordsMigrated()) {
+						display.setIsRefreshRequired(false);
+						display.setRecordsMigrated(0);
+					
+				}
+			});
+			showUserDetail();
+			if(PermissionUtil.authorize(Entitlements.CURRIES)) {
+				
+				if(!display.getMenuPnl().hasMember(display.getExcelTemplateDownload())){
+					GWT.log("adding member");
+					display.getExcelTemplateDownload().setStyleName(StyleConstant.MENU_ITEM_STYLE);
+					display.getExcelTemplateDownload().setWidth(248);
+					display.getExcelTemplateDownload().setHeight(33);
+					display.getMenuPnl().addMembers(display.getExcelTemplateDownload());
+				}
+				else {
+				display.getExcelTemplateDownload().show();
+				}
+			
+			}
+			else {
+		
+				display.getExcelTemplateDownload().hide();
+				
+			}
+		});
+	}
+
+	private void hideBranchInfoEventBusHandler() {
+		eventBus.addHandler(HideBranchInfoEvent.type, event -> {
+			String currentBrandName = Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME);
+			
+			if (event.isHide()) {
+				display.getCompanySelectItem().hide();
+				display.getBrandSelectItem().hide();
+				display.geSwitchOffDropdowns().hide();
+				display.getBranchSelectItem().hide();
+			    if(currentBrandName.equals("Curries") || currentBrandName.equals("Ceco Door") ) {
+				    display.getProgramTypeAccess().hide();
+				}
+				display.getBrandHtml().hide();
+			} else {
+				display.getCompanySelectItem().show();
+				display.getBrandHtml().show();
+				display.getBrandSelectItem().show();
+				hideOrShowBranch();
+			    if(currentBrandName.equals("Curries") || currentBrandName.equals("Ceco Door") ) {
+			    	display.getProgramTypeAccess().show();
+				}
+				display.geSwitchOffDropdowns().show();
+			}
+		});
+	}
+
+	private void hideOrShowBranch() {
+		if(isAASCAdmin !=null && !"Y".equals(isAASCAdmin)) {
+		display.getBranchSelectItem().hide();
+		}else {
+		display.getBranchSelectItem().show();	
+		}
+	}
+
+	private void getClearCacheButtonHandler() {
+		display.getClearCacheButton().addClickHandler(event -> {
+			showHideMenu(display.getMenuPnl());
+			DSResponse rep = new DSResponse(DataSourceConstant.DROPDOWN_DS, DSOperationType.UPDATE);
+			rep.setInvalidateCache(true);
+			DMI.call(DMIContants.APP_NAME, DMIContants.INVALIDATE_CACHE_SERVICE, DMIContants.METHOD_INVALIDATE_CACHE,
+					(response, rawData, request) -> {
+						if (response.getStatus() == DSResponse.STATUS_SUCCESS) {
+							DataSource.get(DataSourceConstant.DROPDOWN_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.COMPANY_INFORMATION);
+							DataSource.get(DataSourceConstant.COMPANY_INFORMATION).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.TRANS_SHIP_VIA_DS);
+							DataSource.get(DataSourceConstant.TRANS_SHIP_VIA_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.CARRIER_CODE_DS);
+							DataSource.get(DataSourceConstant.CARRIER_CODE_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.DOOR_STOCK_DS);
+							DataSource.get(DataSourceConstant.DOOR_STOCK_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.FRAME_STOCK_DS);
+							DataSource.get(DataSourceConstant.FRAME_STOCK_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.REMAKE_CD_DS);
+							DataSource.get(DataSourceConstant.REMAKE_CD_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.PROGRAM_TYPES_DS);
+							DataSource.get(DataSourceConstant.PROGRAM_TYPES_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.HDW_MANUFACTURER_DS);
+							DataSource.get(DataSourceConstant.HDW_MANUFACTURER_DS).updateCaches(rep);
+							rep.setDataSource(DataSourceConstant.DROPDOWN_DS);
+							DataSource.get(DataSourceConstant.DROPDOWN_DS).updateCaches(rep);
+							rep.setDataSource("MfgLocations");
+							DataSource.get("MfgLocations").updateCaches(rep);
+							rep.setDataSource("Doorlabels");
+							DataSource.get("Doorlabels").updateCaches(rep);
+							rep.setDataSource("Framelabels");
+							DataSource.get("Framelabels").updateCaches(rep);
+							rep.setDataSource("Ordpgmcat");
+							DataSource.get("Ordpgmcat").updateCaches(rep);
+							SC.say("Application Cache Cleaned");
+						}
+					}, null);
+		});
+	}
+
+	private void getCompanySelectItemHandler() {
+		display.getCompanySelectItem().addChangedHandler(handler -> {
+			ListGridRecord gridRecord=display.getCompanySelectItem().getSelectedRecord();
+			GWT.log("Record "+gridRecord);
+			String customerNo = display.getCompanySelectItem().getSelectedRecord()
+					.getAttribute(DataSourceFieldsConstant.CUSTOMER_NO);
+			ListGridRecord selectedRecord = display.getCompanySelectItem().getSelectedRecord();
+            GWT.log("selected record "+customerNo);
+
+			StringBuilder projectDistributorBuilder = new StringBuilder();
+			projectDistributorBuilder.append(selectedRecord.getAttribute(DataSourceFieldsConstant.CUSTOMER_NAME))
+					.append(" - ").append(selectedRecord.getAttribute(DataSourceFieldsConstant.CUSTOMER_NO));
+			Integer brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+            String brandName = Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME);
+            String branchName = Cookies.getCookie(DataSourceFieldsConstant.BRANCH_LOCATION);
+            Object isDropDownSwitchedOff=Offline.get(AppConstant.DROP_DOWNS_SWITCHED_OFF);
+            DMI.call(DMIContants.APP_NAME, DMIContants.LOGIN_USER_DETAILS_SERVICE, DMIContants.SAVE_PREFFERED_DETAILS,
+					(response, rawData, request) -> {
+						GWT.log("Brand Details Saved");
+						PresenterFactory.getCowProjectPresenter().clearSearchCriteria();
+						  ViewFactory.getServiceCenterOrdersView().getTextItem().clearValue();
+						ViewFactory.getServiceCenterOrdersView().getOrdersGrid().invalidateCache();
+						ViewFactory.getServiceCenterOrdersView().getOrdersGrid().fetchData();
+					}, new Object[] { customerNo,brandNo ,brandName,branchName,isDropDownSwitchedOff});
+            ViewFactory.getCowProjectView(brandNo).getProjectDistributorLabel()
+					.setContents(MESSAGES.open_project_label() + AppConstant.BLANK_SPACE + projectDistributorBuilder.toString());
+
+			display.getCompanySelectItem().setValue(projectDistributorBuilder.toString());
+			display.getHeaderLayout().redraw();
+			LoadMask loadMask = new LoadMask("Projects", "Loading projects");
+
+			//By Milan Gaur : Bug fix Start: Hiding master project filter hint item when changing company.
+			PresenterFactory.getCowProjectPresenter().setMpId("");PresenterFactory.getCowProjectPresenter().setMpName("");
+			ViewFactory.getCowProjectView(brandNo).getMasterProjectFilterHintItem().hide();
+			ViewFactory.getCowProjectView(brandNo).getProjectDetailsGrid().invalidateCache();
+			ViewFactory.getCowProjectView(brandNo).getProjectDetailsGrid().fetchData();
+			//By Milan Gaur : Bug fix End: Hiding master project filter hint item when changing company.
+
+			Cookies.setCookie(DataSourceFieldsConstant.CUSTOMER_NO, customerNo);
+			DMI.call(DMIContants.APP_NAME, DMIContants.COMPANY_INFORMATION_SERVICE,
+					DMIContants.GET_OR_CREATEGET_COW_COMPANY_INFORMATION_BY_CUSTOMER_NO,
+					(response, rawData, request) -> {
+						GWT.log("requst completed");
+						ViewFactory.getCowProjectView(brandNo).getProjectDetailsGrid().invalidateCache();
+						@SuppressWarnings("unchecked")
+						List<String> permisssionMap = JSOHelper.convertToList(response.getDataAsObject());
+						final Set<String> entitlements = new HashSet<>(permisssionMap);
+						PermissionUtil.setPermission(entitlements);
+
+						loadMask.hide();
+					}, new Object[] { customerNo, brandNo, brandName,branchName });
+		});
+	}
+	private Object saveBranchInformation() {
+		ListGridRecord selectedRecord = display.getBranchSelectItem().getSelectedRecord();
+
+		String branchName = selectedRecord.getAttributeAsString(DataSourceFieldsConstant.BRANCH_LOCATION);
+
+		Cookies.setCookie(DataSourceFieldsConstant.BRANCH_LOCATION, branchName);
+			DMI.call(DMIContants.APP_NAME, DMIContants.SESSION_SERVICE, "saveChoosenBranch",
+					(response, rawData, request) -> {
+						
+						Integer brandNo = Integer.parseInt(Cookies.getCookie(DataSourceFieldsConstant.BRAND_NO));
+			            String brandName = Cookies.getCookie(DataSourceFieldsConstant.BRAND_NAME);
+			            String customerNo = Cookies.getCookie(DataSourceFieldsConstant.CUSTOMER_NO);
+			            Object isDropDownSwitchedOff=Offline.get(AppConstant.DROP_DOWNS_SWITCHED_OFF);
+						DMI.call(DMIContants.APP_NAME, DMIContants.LOGIN_USER_DETAILS_SERVICE, DMIContants.SAVE_PREFFERED_DETAILS,
+								(response1, rawData1, request1) -> {
+									StringBuilder label = new StringBuilder();
+									label.append("Orders For Branch: " + AppConstant.BLANK_SPACE);
+									label.append(branchName);
+									ViewFactory.getServiceCenterOrdersView().getServiceCenterBranchLabel().setContents(label.toString());
+									 Criteria criteria = new Criteria();
+								        
+									  criteria.setAttribute("branch", branchName);
+									  PresenterFactory.getCowProjectPresenter().clearSearchCriteria();
+									  ViewFactory.getCowProjectView(brandNo).getProjectDetailsGrid().fetchData();
+									    ViewFactory.getServiceCenterOrdersView().getTextItem().clearValue();
+										ViewFactory.getServiceCenterOrdersView().getOrdersGrid().invalidateCache();
+									   ViewFactory.getServiceCenterOrdersView().getOrdersGrid().fetchData(criteria);
+									  ViewFactory.getServiceCenterOrdersView().getTextItem().clearValue();
+									ViewFactory.getServiceCenterOrdersView().getOrdersGrid().invalidateCache();
+									ViewFactory.getServiceCenterOrdersView().getOrdersGrid().fetchData();
+								}, new Object[] { customerNo,brandNo ,brandName,branchName,isDropDownSwitchedOff});	
+					
+					}, new Object[] { branchName });
+			
+			
+		return null;
+	}
+	public void showCompanyInformation(boolean shouldOpenDOT) {
+		display.getCompanyLayout().clear();
+		PresenterFactory.getCompanyInformationPresenter().go(display.getCompanyLayout(),shouldOpenDOT);
+		display.getCompanyDialog().show();
+	}
+	private Object saveBrandInformation() {
+		ListGridRecord selectedRecord = display.getBrandSelectItem().getSelectedRecord();
+		String brandNum = selectedRecord.getAttributeAsString(DataSourceFieldsConstant.BRAND_NO).trim();
+		String brandName = selectedRecord.getAttributeAsString(DataSourceFieldsConstant.BRAND_NAME);
+
+		Cookies.removeCookie(DataSourceFieldsConstant.CUSTOMER_NO);
+		Cookies.removeCookie(DataSourceFieldsConstant.CUSTOMER_NAME);
+		Cookies.removeCookie(DataSourceFieldsConstant.CUSTOMER_UNIQUE_NAME);
+		Cookies.setCookie(DataSourceFieldsConstant.BRAND_NO, brandNum);
+		Cookies.setCookie(DataSourceFieldsConstant.BRAND_NAME, brandName);
+			DMI.call(DMIContants.APP_NAME, DMIContants.SESSION_SERVICE, "saveChosenBrand",
+					(response, rawData, request) -> PresenterFactory.getUserCompanyInformationPresenter().go(true)	
+					, new Object[] { Integer.parseInt(brandNum), brandName });
+			
+			
+		return null;
+	}
+
+
+	/**
+	 * Show hide menu.
+	 * 
+	 * @param menuPnl
+	 *            the menu pnl
+	 */
+	private void showHideMenu(VLayout menuPnl) {
+
+		if (menuPnl.isVisible()) {
+			menuPnl.hide();
+			menuPnl.setVisibility(Visibility.HIDDEN);
+
+		} else {
+			menuPnl.show();
+			menuPnl.setVisibility(Visibility.VISIBLE);
+
+		}
+	}
+
+	/**
+	 * Header view.
+	 */
+	public interface Display {
+
+		/**
+		 * To get this view as widget.
+		 * 
+		 * @return this view
+		 */
+		Widget asWidget();
+
+		Canvas getClearCacheButton();
+
+		/**
+		 * To getHeaderLayout.
+		 * 
+		 * @return header layout
+		 */
+		HLayout getHeaderLayout();
+
+		/**
+		 * Gets the menu button.
+		 * 
+		 * @return the menu button
+		 */
+		IButton getMenuButton();
+
+		/**
+		 * Gets the menu pnl.
+		 * 
+		 * @return the menu pnl
+		 */
+		VLayout getMenuPnl();
+
+		/**
+		 * Gets the about menu item.
+		 * 
+		 * @return the aboutMenuItem
+		 */
+		public IButton getAboutMenuItem();
+
+		/**
+		 * Gets the adds the widget item.
+		 * 
+		 * @return the addWidgetItem
+		 */
+
+
+		/**
+		 * Gets the company info item.
+		 * 
+		 * @return the companyInfoItem
+		 */
+		public IButton getCompanyInfoItem();
+
+		/**
+		 * Gets the logout item.
+		 * 
+		 * @return the logoutItem
+		 */
+		public IButton getLogoutItem();
+
+		/**
+		 * Gets the Company Information layout.
+		 * 
+		 * @return the layout for Company Info
+		 */
+		public Layout getCompanyLayout();
+
+		/**
+		 * Gets the Dialog box for Company Info page
+		 */
+		public Window getCompanyDialog();
+
+		public SelectItem getCompanySelectItem();
+
+		public HTMLFlow getBrandHtml();
+
+		HTMLFlow getUserWelcomeHtmlIcon();
+
+		HTMLFlow getUserWelcomeHtmlText();
+		
+		public Boolean getIsRefreshRequired();
+		
+		void  setIsRefreshRequired(Boolean isRefreshRequired);
+
+		void setRecordsMigrated(Integer recordsMigrated);
+		
+		Integer getRecordsMigrated();
+
+		Label getimportReview();
+
+		IButton getExcelTemplateDownload();
+
+		IButton geSwitchOffDropdowns();
+		
+		SelectItem getBranchSelectItem();
+		
+
+
+		SelectItem getBrandSelectItem();
+
+		IButton getProgramTypeAccess();
+
+		IButton getCloseMenuPnlButton();
+
+		HLayout getAdminLayout();
+
+		HLayout getUserLayout();
+
+		IButton getUserButton();
+
+		IButton getAdminButton();
+
+		HLayout getBrandLogoLayout();
+
+	}
+
+	public void go(VLayout container, String branchName) {
+		display.getMenuPnl().setVisibility(Visibility.HIDDEN);
+		display.getCompanySelectItem().setValue(branchName);
+		display.getCompanySelectItem().fetchData();
+		display.getCompanySelectItem().setAutoFetchData(true);
+		container.addMember(display.asWidget());
+		bind();
+		showUserDetail();
+	}
+
+	/**
+	 * Hide or Show Add Widget in Menu Panel
+	 * 
+	 * @param hideAddWidget
+	 */
+	public void hideAddWidgetFromMenuPnl(boolean hideAddWidget) {
+	// Commenting the code block in accordance to ticket number 1505
+	}
+	
+	
+	public void hideimportReview() {
+		display.getimportReview().hide();
+	}
+
+	public void showimportReview() {
+		display.getimportReview().show();
+	}
+
+}
